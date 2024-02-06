@@ -1,0 +1,54 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Cancelar días médicos">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" [formGroup]="formulario">
+                        <div class="row">
+                            <div>
+                                <div>Médico:</div>
+                                <select formControlName="id_med1" class="form-select campos_form" [ngClass]="{'is-invalid': id_med1.invalid && (id_med1.dirty || id_med1.touched || saltarAlertas), 'is-valid': id_med1.valid && (id_med1.dirty || id_med1.touched || saltarAlertas)}">
+                                    <option value="" disabled>Seleccione una opción</option>
+                                    <option *ngFor="let element of agenda" value="{{element.codigo1}}">{{element.nom_med1}}
+                                    </option>
+                                </select>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Fecha:</div>
+                               <input type="date" formControlName="fecha1" style="text-transform:uppercase" class="form-control form-control-sm campos_form" [ngClass]="{'is-invalid': fecha1.invalid && (fecha1.dirty || fecha1.touched || saltarAlertas), 'is-valid': fecha1.valid && (fecha1.dirty || fecha1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="formulario.invalid">
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="guardarformulario()"><i class="feather icon-check-circle"></i>Guardar</button>
+                                <button class="btn btn-light" (click)="BotonesOpciones()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+        
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <dx-data-grid class="grid" [dataSource]="llenadotabla" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }" >
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="vr_fecha" caption="Fecha" width="100" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="vr_id_med" caption="Identificación" width="120"></dxi-column> <!-- columnAutoWidth -->
+                        <dxi-column dataField="vr_nom_med" caption="Nombre del profesional" width="columnAutoWidth"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+
+        </app-card>
+    </div>
+</div>

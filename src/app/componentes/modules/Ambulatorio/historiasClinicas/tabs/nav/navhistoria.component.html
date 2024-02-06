@@ -1,0 +1,96 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel  class="panel" [expanded]="true"> <!-- [expanded]="step === 0" (opened)="setStep(0)" hideToggle -->
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title_panel">
+                  Historia clinica
+                </mat-panel-title>
+                <!-- <div class="icono iconorotate"><img src="../../../../../assets/img/angle-arrow-down.png" alt=""></div> -->
+              </mat-expansion-panel-header>
+              <div class="menu">
+                <div class="opciones"><img src="" alt=""><a>Información de la consulta</a></div>
+                <div class="opciones"><img src="" alt=""><a>Tratamientos</a></div>
+                <div class="opciones" (click)="cambiaNombreVentana('Referencia de pacientes')"><img src="" alt=""><a>Referencia de pacientes</a></div>
+                <div class="opciones"><img src="" alt=""><a>Resultados de ayudas diagnósticas</a></div>
+                <div class="opciones" (click)="cambiaNombreVentana('Certificado de incapacidad')"><img src="" alt=""><a>Incapacidades</a></div>
+                <div class="opciones"><img src="" alt=""><a>Resultados de paraclínicos</a></div>
+                <div class="opciones"><img src="" alt=""><a>Vacunación</a></div>
+                <div class="opciones"><img src="" alt=""><a>Historial de visitas</a></div>
+              </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="panel" [expanded]="true"> <!-- [expanded]="step === 1" (opened)="setStep(1)" hideToggle  -->
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title_panel">
+                    Patrones de crecimiento
+                </mat-panel-title>
+                <!-- <div class="icono2"><img src="../../../../../assets/img/angle-arrow-down.png" alt=""></div> -->
+            </mat-expansion-panel-header>
+            <div class="menu">
+              <div class="opciones"><img src="" alt=""><a>Peso para la talla</a></div>
+              <div class="opciones"><img src="" alt=""><a>Talla para la edad</a></div>
+              <div class="opciones"><img src="" alt=""><a>Perímetro cefalíco</a></div>
+              <div class="opciones"><img src="" alt=""><a>IMC para la edad</a></div>
+              <div class="opciones"><img src="" alt=""><a>Peso para la edad</a></div>
+              <div class="opciones"><img src="" alt=""><a>IMC para la edad gestacional</a></div>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel class="panel" [expanded]="true"> <!-- [expanded]="step === 2" (opened)="setStep(2)" hideToggle -->
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title_panel">
+                    Instrumentos
+                </mat-panel-title>
+                <!-- <div class="icono3"><img src="../../../../../assets/img/angle-arrow-down.png" alt=""></div> -->
+            </mat-expansion-panel-header>
+            <div class="menu">
+              <div class="opciones"><img src="" alt=""><a>Escala abraviada de desarrollo</a></div>
+              <div class="opciones"><img src="" alt=""><a>Apgar Familiar</a></div>
+              <div class="opciones"><img src="" alt=""><a>Cuestionario VALE</a></div>
+              <div class="opciones"><img src="" alt=""><a>Escala de Lawton Brody</a></div>
+              <div class="opciones"><img src="" alt=""><a>Indice de Barthel</a></div>
+              <div class="opciones"><img src="" alt=""><a>Test Linda Fried</a></div>
+              <div class="opciones"><img src="" alt=""><a>Test MINIMENTAL</a></div>
+              <div class="opciones"><img src="" alt=""><a>Cuestionario GAD-2</a></div>
+              <div class="opciones"><img src="" alt=""><a>Test de WHOOLEY</a></div>
+              <div class="opciones"><img src="" alt=""><a>Test de AUDIT</a></div>
+              <div class="opciones"><img src="" alt=""><a>Escala de ZARIT</a></div>
+              <div class="opciones"><img src="" alt=""><a>Cuestionario M-CHAT</a></div>
+              <div class="opciones"><img src="" alt=""><a>Test ASSIST</a></div>
+            </div>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <!-- <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+    </button> -->
+    <div style="margin-top: 20px;">
+        <div class="">
+          <div class="">
+            <div class="">
+              <div class="header">
+                <mat-tab-group style="margin-top: -17px; margin-left: -5px; margin-right: -5px;" #tabGroup [disableRipple]="true" [selectedIndex]="selected.value" (selectedTabChange)="cambiaNombreVentana($event)">
+                  <mat-tab class="mat-tab-body-wrapper" *ngFor="let tab of tabs; let index = index" [label]="tab.tabName">
+                    <div class="tab_con">
+                      <ng-template mat-tab-label class="tab_label">
+                        <span class="etiqueta_tab">
+                            {{tab.tabName}}
+                        </span>
+                        <img src="../../../../../../../assets/img/close_tab.svg" class="iconos_tab" (click)="removeTab(index)">
+                      </ng-template>
+                    </div>
+                    <ng-container *ngComponentOutlet="tab.selector"></ng-container>
+                  </mat-tab>
+                </mat-tab-group>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</mat-drawer-container>
+<!-- <button (click)="drawer.toggle()">Togleeeeeee</button> -->

@@ -1,0 +1,173 @@
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+
+    <div class="col-sm-12">
+
+        <app-card cardTitle="Nota Contable">
+
+            <form class="was-validated" [formGroup]="formulario">
+
+                <div class="row" style="align-items: center;">
+                    <div class="col-md-3">
+                        <div>
+                            <label>Tipo de Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <dx-select-box [dataSource]="DS_tipodcto" [height]="35" displayExpr="descripcion"
+                                formControlName="tipodcto" valueExpr="tipodcto" searchMode="contains"
+                                searchExpr="descripcion" [searchEnabled]="true" required>
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="align-items: center; margin-top: 3px;">
+                    <div class="col-md-3">
+                        <div>
+                            <label>Comprobante</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <dx-select-box [dataSource]="DS_comprobantes" [height]="35" displayExpr="descripcion"
+                                formControlName="comprobante" valueExpr="id" searchMode="contains"
+                                searchExpr="descripcion" [searchEnabled]="true" required>
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="align-items: center; margin-top: 3px">
+                    <div class="col-md-3">
+                        <div>
+                            <label>No. de Documento</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div>
+                            <input type="text" class="form-control" style="height: 35px;" formControlName="numdcto" maxlength="500" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="align-items: center; margin-top: 3px">
+                    <div class="col-md-3">
+                        <div>
+                            <label>Fecha</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div>
+                            <dx-date-box type="date" [height]="35" formControlName="fecha" required>
+                                <dx-validator>
+                                    <dxi-validation-rule type="required" message="Esta fecha es requerida!"></dxi-validation-rule>
+                                </dx-validator>
+                            </dx-date-box>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-12" style="margin-top: 30px">
+                    <dx-data-grid class="grid" #grid 
+                        [dataSource]="DS" 
+                        newRowPosition="last" 
+                        height="500"
+                        [allowColumnResizing]="true" [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true"
+                        (onEditingStart)="logEvent('EditingStart', $event)"
+                        (onInitNewRow)="logEvent('InitNewRow', $event)"
+                        (onRowInserting)="logEvent('RowInserting', $event)"
+                        (onRowInserted)="logEvent('RowInserted', $event)"
+                        (onRowUpdating)="logEvent('RowUpdating', $event)"
+                        (onRowUpdated)="logEvent('RowUpdated', $event)" (onRowRemoving)="onRowRemoving($event)"
+                        (onRowRemoved)="logEvent('RowRemoved', $event)" (onSaving)="logEvent('Saving', $event)"
+                        (onSaved)="logEvent('Saved', $event)" (onEditCanceling)="logEvent('EditCanceling', $event)"
+                        (onEditCanceled)="logEvent('EditCanceled', $event)"
+                        (onToolbarPreparing)="onToolbarPreparing($event)" (onContentReady)="onContentReady($event)"
+                        >
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+                        <dxo-scrolling mode="standard"></dxo-scrolling>
+                        <dxo-editing 
+                            mode="row" 
+                            [allowUpdating]="true" 
+                            [allowDeleting]="true" 
+                            [allowAdding]="true"
+                            [refreshMode]=""
+                            [texts]="{confirmDeleteMessage: '', saveRowChanges: 'Guardar', cancelRowChanges: 'Cancelar', editRow: 'Editar', deleteRow: 'Eliminar'}">
+                        </dxo-editing>
+                        <dxi-column dataField="id_ase" caption="Tercero" width="100">
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="cta" caption="Cuenta" width="250">
+                            <dxo-lookup [dataSource]="DS_cuentas" displayExpr="descripcion" valueExpr="codcta">
+                            </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column dataField="debito" caption="Débito" width="100" alignment="right" dataType="number" format="fixedPoint">
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="credito" caption="Crédito" width="100" alignment="right" dataType="number" format="fixedPoint">
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="ccosto" caption="C.Costo" width="90">
+                            <dxo-lookup [dataSource]="DS_cencos" valueExpr="id" displayExpr="id"></dxo-lookup>
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descripción" width="150"></dxi-column>
+
+                        <dxi-column dataField="item_ref" caption="Item_ref" width="80"></dxi-column>
+                        <dxi-column dataField="tipo_ref" caption="Tipo_ref" width="80"></dxi-column>
+
+                        <dxi-column dataField="causacion" caption="Causación" width="90"></dxi-column>
+                        <dxi-column dataField="id_formapago" caption="Forma de Pago" width="80"></dxi-column>
+                        <dxi-column dataField="vr_cheque" caption="Cheque" width="100"></dxi-column>
+
+                        <dxo-summary>
+                            <dxi-total-item column="cta" summaryType="custom" displayFormat="Total:" alignment="right" cssClass="negrita"></dxi-total-item>
+                            <dxi-total-item *ngIf="diferencia !== 0" column="cta" summaryType="custom" displayFormat="Diferencia:" alignment="right" cssClass="diferencia"></dxi-total-item>
+                            <dxi-total-item column="debito" summaryType="sum" valueFormat="currency" alignment="right" [customizeText]="customizeNumeric" cssClass="negrita"></dxi-total-item>
+                            <dxi-total-item column="credito" summaryType="sum" valueFormat="currency" alignment="right" [customizeText]="customizeNumeric" cssClass="negrita"></dxi-total-item>
+
+                            <dxi-total-item 
+                                *ngIf="diferenciaDebito !== 0" summaryType="custom" valueFormat="{ type: 'fixedPoint', precision: 2 }" cssClass="diferencia" displayFormat={{diferenciaDebito}} showInColumn="debito">
+                            </dxi-total-item>
+                            <dxi-total-item 
+                                *ngIf="diferenciaCredito !== 0" summaryType="custom" valueFormat="currency" cssClass="diferencia" displayFormat={{diferenciaCredito}} showInColumn="credito">
+                            </dxi-total-item>
+
+                        </dxo-summary>
+
+                    </dx-data-grid>
+                </div>  
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-5">
+                        <div>
+                            <label>Observaciones</label>
+                        </div>
+                        <textarea rows="3" class="form-control" formControlName="observaciones" maxlength="800"></textarea>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-light" (click)="limpiar()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="insert()"><i class="feather icon-check-circle"></i>Guardar</button>
+                        <!-- <button type="submit" class="btn btn-danger" (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button> -->
+                    </div>
+                </div>
+
+
+
+
+
+            </form>
+
+        </app-card>
+    </div>
+</div>

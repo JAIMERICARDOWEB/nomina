@@ -1,0 +1,49 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Días Festivos">
+            <div class="row">
+                <div class="col-md-6">
+                    <form [formGroup]="formulario" (ngSubmit)="ConfirmarGuardado()">
+                        <div class="row">
+                            <div>
+                                <div> Seleccione el día: </div>
+                                <input type="date" formControlName="fecha1" style="text-transform:uppercase" class="form-control campos_form" maxlength="40" [ngClass]="{'is-invalid': fecha1.invalid && (fecha1.dirty || fecha1.touched || saltarAlertas), 'is-valid': fecha1.valid && (fecha1.dirty || fecha1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-12">
+                                <div *ngIf="formulario.invalid">
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid"><i class="feather icon-check-circle"></i>Guardar</button>
+                                <button class="btn btn-light" (click)="BotonesOpciones()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <div id="container">
+                        <div class="calendar-container" style="float: right;">
+                          <dx-calendar
+                            #calendar
+                            [(value)]="currentValue"
+                            [min]="minDateValue"
+                            [max]="maxDateValue"
+                            [disabledDates]="festivos"
+                            [showWeekNumbers]="false"
+                            [disabled]="false"
+                            [firstDayOfWeek]="0"
+                            [zoomLevel]="zoomLevels[0]"
+                            [cellTemplate]="cellTemplate"
+                            weekNumberRule="auto" >
+                            <div *dxTemplate="let data of 'cell'" class="cell-content" [ngClass]="getCellStyle(data)">
+                                {{ data.text }}
+                              </div>
+                          </dx-calendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

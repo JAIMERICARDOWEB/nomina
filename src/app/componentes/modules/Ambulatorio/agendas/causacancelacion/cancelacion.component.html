@@ -1,0 +1,26 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Causas de cancelación">
+            <form action="" [formGroup]="formulario" >
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <div> Descripción de Cancelación: </div>
+                        <input type="text" formControlName="descripcion1"  style="text-transform:uppercase;" class="form-control campos_form" maxlength="40"
+                        [ngClass]="{'is-invalid': descripcion1.invalid && (descripcion1.dirty || descripcion1.touched || saltarAlertas),
+                        'is-valid': descripcion1.valid && (descripcion1.dirty || descripcion1.touched || saltarAlertas)}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="formulario.invalid">
+                            <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="ConfirmarGuardado()"><i class="feather icon-check-circle"></i>Guardar</button>
+                        <button class="btn btn-light" (click)="BotonesOpciones()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+
+                    </div>
+                </div>
+            </form>
+        </app-card>
+    </div>
+</div>

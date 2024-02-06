@@ -1,0 +1,190 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Asignación de citas">
+            <div class="row">
+                <div class="col-md-6">
+                    <form [formGroup]="formulario">
+                        <div class="row">
+                            <div>
+                                <div>Profesional:</div>
+                                <dx-select-box formControlName="codmed1" [dataSource]="medicosArray" class="campos_form" valueExpr="codigo1" displayExpr="nom_med1" [searchEnabled]="true" [searchExpr]="'nom_med1'">
+                                    <!-- (onValueChanged)="onValueChanged($event) [ngClass]="{'is-invalid-select': id_med1.invalid && (id_med1.dirty || id_med1.touched || saltarAlertas), 'is-valid-select': id_med1.valid && (id_med1.dirty || id_med1.touched || saltarAlertas)}" -->
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <!-- <div class="mb-3 col-md-6">
+                            <div>Cita No:</div>
+                            <input type="text" class="form-control form-control-sm campos_form">
+                        </div> -->
+                        <div class="row">
+                            <div>
+                                <div>Fecha y hora de la cita:</div>
+                                <input type="datetime-local" formControlName="fechacita1" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <p style="margin-top: 20px; margin-bottom: -10px; color: black;">Datos básicos del paciente</p>
+                        <hr />
+                        <div class="row">
+                            <div>Identificación:</div>
+                            <div class="d-flex">
+                                <!-- (blur)="bus_paciente()" -->
+                                <input type="text" #autofocus (keypress)="soloNumeros($event, 20)" class="form-control inputBusqueda campos_form" formControlName="idpacien1"  maxlength="20" [ngClass]="{'is-invalid': idpacien1.invalid && (idpacien1.dirty || idpacien1.touched || saltarAlertas),
+                                'is-valid': idpacien1.valid && (idpacien1.dirty || idpacien1.touched ||   saltarAlertas)}"/>
+                                <span class="input-group-text lupa campos_form" id="basic-addon2" (click)="bus_paciente()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                                <button (click)="bus_paciente()" style="display: none;" (keydown.enter)="$event.preventDefault()"></button>
+                                <!-- <input type="submit" value="" style="display: none;"> -->
+                            </div>
+                            <!-- <div>
+                                <div>Identificación:</div>
+                                <dx-select-box formControlName="idpacien1" [dataSource]="medicosArray" class="campos_form" valueExpr="idmed1" displayExpr="nom_med1" [searchEnabled]="true" [searchExpr]="'nom_med1'"
+                                [ngClass]="{'is-invalid-select': idpacien1.invalid && (idpacien1.dirty || idpacien1.touched || saltarAlertas), 'is-valid-select': idpacien1.valid && (idpacien1.dirty || idpacien1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="div">
+                                <div>Fecha cita deseada:</div>
+                                <input type="date" formControlName="fecha_deseada1" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': fecha_deseada1.invalid && (fecha_deseada1.dirty || fecha_deseada1.touched || saltarAlertas), 'is-valid': fecha_deseada1.valid && (fecha_deseada1.dirty || fecha_deseada1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Primer nombre:</div>
+                                <input type="text" (keypress)="soloLetras($event)" maxlength="20" formControlName="nom11" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': nom11.invalid && (nom11.dirty || nom11.touched || saltarAlertas), 'is-valid': nom11.valid && (nom11.dirty || nom11.touched || saltarAlertas)}">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Segundo nombre:</div>
+                                <input type="text" (keypress)="soloLetras($event)" maxlength="20" formControlName="nom21" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': nom21.invalid && (nom21.dirty || nom21.touched || saltarAlertas), 'is-valid': nom21.valid && (nom21.dirty || nom21.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Primer Apellido:</div>
+                                <input type="text" (keypress)="soloLetras($event)" maxlength="20" formControlName="apell11" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': apell11.invalid && (apell11.dirty || apell11.touched || saltarAlertas), 'is-valid': apell11.valid && (apell11.dirty || apell11.touched || saltarAlertas)}">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Segundo Apellido:</div>
+                                <input type="text" (keypress)="soloLetras($event)" maxlength="20" formControlName="apell21" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': apell21.invalid && (apell21.dirty || apell21.touched || saltarAlertas), 'is-valid': apell21.valid && (apell21.dirty || apell21.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>N° Celular:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="telpacien1" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': telpacien1.invalid && (telpacien1.dirty || telpacien1.touched || saltarAlertas), 'is-valid': telpacien1.valid && (telpacien1.dirty || telpacien1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>N° Whatsapp:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="celularwhatsapp1" maxlength="10" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': celularwhatsapp1.invalid && (celularwhatsapp1.dirty || celularwhatsapp1.touched || saltarAlertas), 'is-valid': celularwhatsapp1.valid && (celularwhatsapp1.dirty || celularwhatsapp1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Email:</div>
+                                <input type="text" formControlName="email1" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Edad:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="edad1" class="form-control form-control-sm campos_form"
+                                [ngClass]="{'is-invalid': edad1.invalid && (edad1.dirty || edad1.touched || saltarAlertas), 'is-valid': edad1.valid && (edad1.dirty || edad1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Municipio:</div>
+                                <dx-select-box [dataSource]="municipios" formControlName="municip1" class="campos_form" valueExpr="cod_muni1" displayExpr="nombremunicipio" [searchEnabled]="true" [searchExpr]="'nombremunicipio'"
+                                [ngClass]="{'is-invalid-select': municip1.invalid && (municip1.dirty || municip1.touched || saltarAlertas), 'is-valid-select': municip1.valid && (municip1.dirty || municip1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Datos del servicio</p>
+                        <hr />
+                        <div class="row">
+                            <div>
+                                <div>Tipo de consulta:</div>
+                                <dx-select-box [dataSource]="tiposconsulta" formControlName="tipocon1" class="campos_form" valueExpr="vr_tipo_con" displayExpr="vr_descri" [searchEnabled]="true" [searchExpr]="'vr_descri'"
+                                [ngClass]="{'is-invalid-select': tipocon1.invalid && (tipocon1.dirty || tipocon1.touched || saltarAlertas), 'is-valid-select': tipocon1.valid && (tipocon1.dirty || tipocon1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Metodo de atención:</div>
+                                <dx-select-box formControlName="codmet1" [dataSource]="metodoatencion" class="campos_form" valueExpr="id_atencion" displayExpr="nombre_atencion" [searchEnabled]="true" [searchExpr]="'nombre_atencion'"
+                                [ngClass]="{'is-invalid-select': codmet1.invalid && (codmet1.dirty || codmet1.touched || saltarAlertas), 'is-valid-select': codmet1.valid && (codmet1.dirty || codmet1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Contrato:</div>
+                                <dx-select-box [dataSource]="contratos" formControlName="cod_contra1" class="campos_form"  valueExpr="vr_cod_contra" displayExpr="vr_nom_contra" [searchEnabled]="true" [searchExpr]="'vr_nom_contra'"
+                                [ngClass]="{'is-invalid-select': cod_contra1.invalid && (cod_contra1.dirty || cod_contra1.touched || saltarAlertas), 'is-valid-select': cod_contra1.valid && (cod_contra1.dirty || cod_contra1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Cantidad por día:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 20)" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Plantilla:</div>
+                                <dx-select-box [dataSource]="plantillas" (onValueChanged)="onValueChanged($event)" class="campos_form" valueExpr="vr_descripcion" displayExpr="vr_nombre" [searchEnabled]="true" [searchExpr]="'vr_nombre'">
+                                    <!-- (onValueChanged)="onValueChanged($event) [ngClass]="{'is-invalid-select': id_med1.invalid && (id_med1.dirty || id_med1.touched || saltarAlertas), 'is-valid-select': id_med1.valid && (id_med1.dirty || id_med1.touched || saltarAlertas)}" -->
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Observación:</div>
+                                <textarea formControlName="obser1" class="form-control form-control-sm campos_form" style="height: 100px;">
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="formulario.invalid">
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                </div>
+                                <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary" (click)="Guardarformulario()"><i class="feather icon-check-circle"></i>Guardar</button>
+                                <button class="btn btn-light"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                                <!-- <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"><i class="feather icon-slash"></i>Eliminar</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6" >
+                    <a (click)="MostrarTablaHistorial()">Ver historial</a>
+                    <div class="tabla" *ngIf="mostrarTabla">
+                        <dx-data-grid class="grid" [dataSource]="Historialtabla" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        >
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <!-- (onSelectionChanged)="onSelectionChanged($event)" -->
+
+                        <dxi-column dataField="vr_fechacita" caption="Fecha cita" width="80" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="vr_medico" caption="Medico" width="columnAutoWidth"></dxi-column> <!-- columnAutoWidth -->
+                        <dxi-column dataField="vr_estado" caption="Estado" width="90"></dxi-column>
+                        <dxi-column dataField="vr_tipo_cita" caption="Tipo cita" width="180"></dxi-column>
+
+                        </dx-data-grid>
+                    </div>
+                    <div class="rellenoxdxd"></div>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

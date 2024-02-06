@@ -1,0 +1,62 @@
+<div [ngClass]="{'loadergo': aparecerloader}" id="loader-container"><div id="loader"></div></div>
+
+<main class="main h-100 w-100">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+                    <div class="text-center mt-4">
+                        <h1 class="h2">Bienvenido</h1>
+                        <p class="lead">
+                            Inicia sesión en tu cuenta para continuar
+                        </p>
+                    </div>
+                    <div class="tarjeta">
+                        <div class="card-body">
+                            <div class="m-sm-4">
+                                <div class="text-center">
+                                    <img src="../../../assets/img/loginLogo.png" alt="Linda Miller" class="img-fluid " width="250" height="45">
+                                </div>
+                                <form [formGroup]="form_usuarios" (ngSubmit)="login()">
+                                    <div class="mb-3">
+                                        <div class="alerta" [ngClass]="{'aparecer': form_valid}">los datos ingresados son incorrectos</div>
+                                        <label>Empresa:</label>
+                                        <input class="form-control " formControlName="empresa" type="text" placeholder="Ingrese su codigo de empresa" maxlength="16"
+                                        [ngClass]="{'is-invalid': empresa.invalid && (empresa.dirty || empresa.touched || saltarAlertas),'is-valid': empresa.valid && (empresa.dirty || empresa.touched ||  saltarAlertas)}">
+                                        <div class="invalid-feedback">Ingrese el codigo de empresa asignado</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Usuario:</label>
+                                        <input class="form-control " formControlName="usuario" type="text" placeholder="Ingrese su usuario" maxlength="16"
+                                        [ngClass]="{'is-invalid': usuario.invalid && (usuario.dirty || usuario.touched || saltarAlertas),'is-valid': usuario.valid && (usuario.dirty || usuario.touched ||  saltarAlertas)}">
+                                        <div class="invalid-feedback">Ingrese las credenciales de usuario</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>Contraseña:</label>
+                                        <input class="form-control " formControlName="pasw" type="password" placeholder="Ingrese la contraseña" maxlength="20"
+                                        [ngClass]="{'is-invalid': pasw.invalid && (pasw.dirty || pasw.touched || saltarAlertas),'is-valid': pasw.valid && (pasw.dirty || pasw.touched ||  saltarAlertas)}">
+                                        <div class="invalid-feedback">Ingrese la contraseña</div>
+                                        <small>
+                                            <a href="pages-reset-password.html">¿Olvido su contraseña?</a>
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <div class="form-check align-items-center">
+                                            <input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me" name="remember-me" checked="">
+                                            <label class="form-check-label text-small" for="customControlInline">Recuerdame la proxima vez</label>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <!-- <a class="btn btn-lg btn-primary">Iniciar sesión</a> -->
+                                        
+                                        <button type="submit" class="btn btn-lg btn-primary">Iniciar sesión</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

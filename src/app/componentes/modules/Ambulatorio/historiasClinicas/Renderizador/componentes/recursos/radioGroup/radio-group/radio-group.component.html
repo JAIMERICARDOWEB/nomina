@@ -1,0 +1,13 @@
+<form [formGroup]="formularioHistorias" (ngSubmit)="submit()">
+<div class="paneles my-2">
+    <div class="label__con">
+        <label for="">{{data.vr_etiqueta_dhd}}</label>
+    </div>
+    <div class="input__con">
+        <div class="con_radio" *ngFor="let element of datosSelector">
+            <input type="radio" formControlName="{{data.vr_name_dhd}}" name="{{data.vr_name_dhd}}" value="{{element.value}}" class="">
+            <label for="">{{element.display}}</label>
+        </div>
+    </div>
+</div>
+</form>

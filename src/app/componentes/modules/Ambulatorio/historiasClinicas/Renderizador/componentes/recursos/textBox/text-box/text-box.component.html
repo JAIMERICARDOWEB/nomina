@@ -1,0 +1,10 @@
+<form [formGroup]="formularioHistorias" (ngSubmit)="submit()">
+    <div class="flex-container align-items-center d-flex my-2">
+        <div class="label">
+            <label for="">{{data.vr_etiqueta_dhd}}</label>
+        </div>
+        <div class="col-sm-10" >
+            <input type="text" placeholder="{{data.vr_etiqueta_repor_dhd}}" formControlName="{{data.vr_name_dhd}}" value="{{data.vr_valorini_dhd}}" class="form-control form-control-sm" >
+        </div>
+    </div>
+</form>

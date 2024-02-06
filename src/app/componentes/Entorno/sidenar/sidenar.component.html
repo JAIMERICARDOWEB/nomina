@@ -1,0 +1,502 @@
+    <mat-drawer-container class="example-container mat-container" autosize>
+
+        <nav class="navbar navbar-expand navbar-theme">
+            <div class="container-fluid">
+                <div class="bars__menu" (click)="drawer.toggle()">
+                    <span></span>
+                    <span></span> <!-- button del menu -->
+                    <span></span>
+                </div>
+                <!-- style= "background: rgb(74,154,200);
+                background: linear-gradient(90deg, rgba(74,154,200,1) 30%, rgba(45,94,165,1) 77%);" -->
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" style="color: aliceblue; font-size: 15px;">Menú Principal</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Parámetros Generales</a>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                    </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse iconos">
+                <i class="bi bi-wallet-fill icoWhite"></i>
+                <i class="bi bi-bell-fill icopacity"></i>
+                <i class="bi bi-gear-fill icopacity config" (click)="drawer2.toggle()"></i>
+            </div>
+        </nav>
+
+        <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="abrirMenu" >
+            <div class="logo">
+                <img src="../../../../assets/img/logo.png" alt="">
+            </div>
+            <div class="sidenav_user">
+                <img src="../../../../assets/img/perfilpordefecto.png" alt="" class="img-fluid rounded-circle mb-2">
+                <div class="" style="font-weight: 500;">Siscolsi S.A.S</div>
+                <small>Sistemas integrados de colombia</small>
+            </div>
+            <ul class="menu" >
+                <li class="sidebar-header">Menu</li>
+                <mat-accordion class="example-headers-align" hideToggle >
+                    <li>
+                        <mat-expansion-panel class="menuDashboard sinElementos" (click)="addTab('Inicio')">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="menuNav" style="font-size: 18px; color: white;"><i class="bi bi-house-fill icon1" style="font-size: 30px;"></i>Inicio</mat-panel-title>
+                            </mat-expansion-panel-header>
+                        </mat-expansion-panel>
+                    </li>
+                    <li>
+                        <mat-expansion-panel [togglePosition]="'after'">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i class="bi bi-hospital-fill icon1" style="font-size: 30px;"></i>Ambulatorio</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-clipboard-plus"></i>Contratos</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ contratos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Contratos de autorizaciones</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ contrato por capita</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Tarifas de medicamento</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Tarifas de contratacion</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Planes de beneficio</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Plazos de pago</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Centros de costos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informes</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-calendar-week"></i>Agendas</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Citas médicas</div>
+                                        <div class="subMenu" (click)="addTab('Crear agenda')">➤ Crear agendas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Confirmar citas</div>
+                                        <div class="subMenu" (click)="addTab('Pacientes')">➤ Pacientes</div>
+                                        <div class="subMenu" (click)="addTab('Profesionales')">➤ Profesionales</div>
+                                        <div class="subMenu" (click)="addTab('Días festivos')">➤ Días festivos</div>
+                                        <div class="subMenu" (click)="addTab('Cancelar días medicos')">➤ Cancelar días de médicos</div>
+                                        <div class="subMenu" (click)="addTab('Tipos de consultas')">➤ Tipos de consulta</div>
+                                        <div class="subMenu" (click)="addTab('Cancelación')">➤ Causas de cancelación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Infor.generales de citas</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-clipboard2-check"></i>Admisiones</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Admisión</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos de servicios</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos de medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Autorizaciones</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Anexos</div>
+                                        <div class="subMenu" (click)="addTab('Pacientes')">➤ Pacientes</div>
+                                        <div class="subMenu" (click)="addTab('Profesionales')">➤ Profesional</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Recibos de caja</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Devolución de dinero</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Especialidades</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pacientes fallecidos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportes</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-clipboard2-pulse"></i>Historias clínicas</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('sala de espera')">➤ Sala de espera</div>
+                                        <div class="subMenu" (click)="addTab('Profesionales')">➤ Profesional</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Especialidades</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Ayudas diagnosticas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Vacunación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Paraclinicos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Servicios de odontologia</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Vias de administración</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Oftalmología</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportes historias</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Imprimir historias</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Impresión masiva historias</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-eyeglasses"></i>Laboratorio clínico</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Lista de espera</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportar exámenes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Entrega de resultados</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Factores ambientales</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Control de calidad</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Citologías</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Plantillas de exámenes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración de equipos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Grupos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Solicitar Devolución Medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Laboratorios Para remisión</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportes de laboratorio</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-cash-coin"></i>Facturación</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Prefacturas y Facturas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Liquidación de cirugias</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos de servicio</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos de Medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ FURIPS</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cotizaciones</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Conceptos de agrupación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Servicios de tarifa</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Tipo de cargo</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Centros de costos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Precio de venta de medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Utilitarios facturación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración facturación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informes facturación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ RIPS (Res. 3374 de 2000)</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-capsule"></i>Farmacia</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Factura de Compra</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Devolucion de Medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Entradas de Aprovechamiento</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Consumo de Area</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Despacho notas de cargo</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Entrega de medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Devolución a provedores</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pedido de formula</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Lista de formulación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pedido consumo de area</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Canastas de Cirugia</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Orden de compra</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Factores ambientales</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informes Farmacia</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Ajustes de inventario</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Traslado de bodegas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Prestamo de productos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Devolución de prestamos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Productos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Precio de venta medicamentos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Laboratorios</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Invima y CUM</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-heart-pulse"></i>Programación Cirugias</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Cirugías</div>
+                                        <div class="subMenu" (click)="addTab('Pacientes')">➤ Pacientes</div>
+                                        <div class="subMenu" (click)="addTab('Profesionales')">➤ Profesionales</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Quirofano</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Causas de cancelación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportes</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-asterisk"></i>Eventos adversos</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Eventos trazadores</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportar Eventos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Gestión de eventos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Reportes</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-diagram-3"></i>Indicadores</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Indicadores y estadis. de citas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Tiempos de ateción</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Infor. generales de citas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Indicador imagenologia</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Morbilidad</div>
+                                    </div>
+                                </div>
+                                <!-- <div class="subMenu" (click)="addTab('')"><i
+                                        class="bi bi-card-heading"></i></div>
+                                <div class="subMenu" (click)="addTab('HC Recien Nacido')"><i
+                                        class="bi bi-journal-medical"></i>Solicitar valoración HC</div>
+                                <div class="subMenu" (click)="addTab(' Recien Nacido')"><i
+                                        class="bi bi-hospital"></i>Realizar valoración</div>
+                                <div class="subMenu"><i class="bi bi-activity"></i>Reporte RTP</div> -->
+                                
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </li>
+                    <li>
+                        <mat-expansion-panel [togglePosition]="'after'">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i class="bi bi-activity icon1" style="font-size: 30px;"></i>Hospitalario</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-clipboard2-check"></i>Admisiones</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Admisión hospitalaria</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Anexos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Prefacturas y Facturas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Liquidación de cirugias</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Recibos de caja</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Devolución de Dinero</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Salida Administrativa</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Envío de emails</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pedido consumo de area</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Consentimiento informado</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Entidades remitentes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pacientes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informes</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-hospital"></i>Hospitalización</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Pisos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Habitaciones</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Camas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Condición de internación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Justificación de internación</div>
+
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-universal-access-circle"></i>Hospitalizados</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Recibir pacientes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pacientes hospitalizados</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pedido consumo de area</div>
+                                    </div>
+                                </div>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-heart-pulse"></i>Historias Clinicas</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Admisión hospitalaria</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Anexos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cargos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Prefacturas y Facturas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Liquidación de cirugias</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Recibos de caja</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Devolución de Dinero</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Salida Administrativa</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Envío de emails</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pedido consumo de area</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Consentimiento informado</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Entidades remitentes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Pacientes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informes</div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- <div class="subMenu" (click)="addTab('Pacientes')"><i
+                                        class="bi bi-person-square"></i>Pacientes DBT</div>
+                                <div class="subMenu" (click)="addTab('reporte DBT')"><i class="bi bi-activity"></i>Reporte
+                                    DBT</div>
+                                <div class="subMenu" (click)="addTab('')"><i class="bi bi-hospital"></i>Sala
+                                    de Espera</div>
+                                <!- <div class="subMenu" (click)="addTab('Admisión Medico')"><i class="bi bi-building-fill-add"></i>Admisión Medico</div>  --
+                                <div class="subMenu" (click)="addTab('Sala Espera Medico')"><i
+                                        class="bi bi-hospital"></i>Valoración Medico</div> -->
+
+
+                                <!-- <div class="subMenu"><i class="bi bi-activity"></i>Reporte seg DBT</div>  -->
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </li>
+                    <li>
+                        <mat-expansion-panel [togglePosition]="'after'">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i class="bi bi-credit-card-2-front icon1" style="font-size: 30px;"></i>Auditoría</mat-panel-title>
+                            </mat-expansion-panel-header>
+                                <ng-template matExpansionPanelContent> 
+                                    <div class="panel subMenuExpacion">
+                                        <div class="panel-header" (click)="togglePanel($event)">
+                                            <div><i class="bi bi-heart-pulse"></i>Entidades aseguradoras</div>
+                                        </div>
+                                        <div class="panel-content">
+                                            <div class="subMenu" (click)="addTab('')">➤ Radicados</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Consultar detalles</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Radicados pendientes</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Adjuntar archivos</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Ingreso de conciliaciones</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Selección de facturas</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Conciliaciones</div>
+                                            <div class="subMenu" (click)="addTab('')">➤ Reportes</div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                        </mat-expansion-panel>
+                    </li>
+                    <li>
+                        <mat-expansion-panel [togglePosition]="'after'">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i class="bi bi-graph-up-arrow icon1" style="font-size: 30px;"></i>Informes generales</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-heart-pulse"></i>Producción y facturación</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Producción por periodos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Producción mensual por día</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Producción por Año</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Producción por Centro de costo</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Producción por Entidades</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Seguimiento a Facturación</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informe Auxiliar P y G</div>
+                                
+                                    </div>
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-heart-pulse"></i>Informes contables</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Informe de Ingresos vs Gastos y Costos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Informe de Cuentas por Pagar</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Ingresos vs costos y gatos x centros</div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </li>
+                    <li>
+                        <mat-expansion-panel [togglePosition]="'after'">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i class="bi bi-ui-checks icon1" style="font-size: 30px;"></i>Gestión de calidad</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div class="subMenu"><i class="bi bi-person-lines-fill"></i>Asociar médicos</div>
+                                <div class="subMenu" (click)="addTab('Imagenes de ref')"><i
+                                        class="bi bi-image-fill"></i>Imagenes de ref</div>
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </li>
+                    <li>
+                        <mat-expansion-panel [togglePosition]="'after'">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i
+                                        class="bi bi-wrench-adjustable-circle-fill icon1" style="font-size: 30px;"></i>Parametros</mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div class="panel subMenuExpacion">
+                                    <div class="panel-header" (click)="togglePanel($event)">
+                                        <div><i class="bi bi-heart-pulse"></i>Opciones</div>
+                                    </div>
+                                    <div class="panel-content">
+                                        <div class="subMenu" (click)="addTab('')">➤ Información de la empresa</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración servidor de correo</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Bloquear creación de historias de urgencia</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración de reportes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Convenciones Odontograma</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Cambiar contraseña</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Permisos de usuario</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración de Triages</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Asignar Camas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Usuarios</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Usuarios con bodegas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Liberar Camas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Unificar productos</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Copagos y cuotas moderadas</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Formatos de impresión</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Formatos de impresión</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Sedes</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Plantillas de consentimientos informados</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Copias de seguridad</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Generar SQL</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Configuración de SMS</div>
+                                        <div class="subMenu" (click)="addTab('')">➤ Diseñar Historia</div>
+                                
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </li>
+                </mat-accordion>
+                <li class="sidebar-header">Opciones</li>
+                <mat-accordion class="example-headers-align" hideToggle>
+                    <li (click)="CerrarSesion()">
+                        <mat-expansion-panel class="sinElementos">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-size: 18px; color: white;"><i class="bi bi-power" style="font-size: 30px; color: red;"></i>Cerrar sesión</mat-panel-title>
+                            </mat-expansion-panel-header>
+                        </mat-expansion-panel>
+                    </li>
+                </mat-accordion>
+            </ul>
+        </mat-drawer>
+        <div class="contenedor_principal">
+            <mat-tab-group #tabGroup [disableRipple]="true" [selectedIndex]="selected.value">
+                <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.tabName">
+                    <ng-template mat-tab-label>
+                        <span>
+                            {{tab.tabName}}
+                        </span>
+                        <button class="botonCloseTab" [disabled]="tabs.length === 1" (click)="removeTab(index)"><i
+                                class="bi bi-x-circle-fill"></i></button>
+
+                    </ng-template>
+                    <ng-container *ngComponentOutlet="tab.selector"></ng-container>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <mat-drawer #drawer2 class="example-sidenav" mode="side" position="end">
+            <div class="configuracion">
+                <div class="title">
+                    <div class="tituloMenu2">Configuración</div>
+                    <div class="lineMenu2"></div>
+                </div>
+                <div class="temas">
+                    <div class="titleTemaMenu2">Tema</div>
+                    <div class="conTemas">
+                        <div class="tema1 boxtemaselected" (click)="CambiarTema(1)"></div>
+                        <div class="tema2" (click)="CambiarTema(2)"></div>
+                        <div class="tema3" (click)="CambiarTema(3)"></div>
+                    </div>
+                </div>
+            </div>
+        </mat-drawer>
+    </mat-drawer-container>
+
+
+    <!-- Contents for {{tab}} tab
+
+                    <button mat-raised-button
+                            class="example-delete-tab-button"
+                            [disabled]="tabs.length === 1"
+                            (click)="removeTab(index)">Delete Tab</button> -->

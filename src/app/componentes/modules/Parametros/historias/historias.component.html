@@ -1,0 +1,240 @@
+<!-- <app-header></app-header> -->
+
+<div class="container__principal">
+    <div class="card__container">
+        <div class="container__encabezado">
+            <div class="encabezado">
+                <div class="titulo">
+                    <h1>Diseñador de historias clínicas</h1>
+                    <!-- <div class="sello">In testing</div> -->
+                </div>
+                <div class="parrafo">
+                    <p>Complete este formulario e ingrese los datos que son requeridos.</p>
+                </div>
+                <div class="linea">
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="container__formulario">
+            <div class="form__con">
+                <form [formGroup]="contactForm" (ngSubmit)="saveHistoria()">
+                    <div class="panelCheck">
+                      <div class="check">
+                        <input type="checkbox"> <label for="">historia de PyP</label>
+                      </div>  
+                      <div class="check">
+                        <input type="checkbox" checked> <label for="">Formato Historia Clinica</label>
+                      </div>
+                      <div class="check">
+                        <input type="checkbox"> <label for="">Actualizable</label>
+                      </div>  
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Nombre Historia:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="number"   placeholder="Codigo" class="input_code" formControlName="vr_codhd_dhd">
+                            <input type="text"  placeholder="Ingrese el nombre" class="input_medianos" formControlName="vr_name_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Tipo de reporte:</label>
+                        </div>
+                        <div class="input__con">
+                            <div class="contenedor_seleccion">
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_etiqueta_dhd" name="vr_etiqueta_dhd" value="Amplio" class="radioSelecion"> <label for="">Amplio</label>
+                                </div>
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_etiqueta_dhd" name="vr_etiqueta_dhd" value="corto " class="radioSelecion"> <label for="">Corto</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Name:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Ingrese el Name" class="input_medianos">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Etiqueta:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Ingrese la etiqueta" class="input_pequeños" formControlName="vr_etiqueta_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Etiqueta Reporte:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Ingrese la etiqueta de reporte" class="input_grandes" formControlName="vr_etiqueta_repor_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Tipo de Control:</label>
+                        </div>
+                        <div class="select_con">
+                            <select name="" id="" formControlName="vr_tipoctrl_dhd">
+                                <option selected hidden>Seleccione una opción</option>
+                                <option value="TEXT BOX">TEXT BOX</option>
+                                <option value="FECHA Y HORA">FECHA Y HORA</option>
+                                <option value="FECHA">FECHA</option>
+                                <option value="HORA">HORA</option>
+                                <option value="COMBO BOX">COMBO BOX</option>
+                                <option value="RADIO GROUP">RADIO GROUP</option>
+                                <option value="CHECK BOX">CHECK BOX</option>
+                                <option value="MEMO">MEMO</option>
+                                <option value="MEMO GRANDE">MEMO GRANDE</option>
+                                <option value="CAJA NUMERICA">CAJA NUMERICA</option>
+                                <option value="GROUP BOX">GROUP BOX</option>
+                            </select>
+                            <input type="checkbox" name="" id="" class="lateral_check" formControlName="vr_dbdecimal_dhd"> <label class="margin0" for="">Doble Decimal</label>
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Tipo de Dato:</label>
+                        </div>
+                        <div class="select_con">
+                            <select name="" id="" formControlName="vr_tipodato_dhd">
+                                <option selected hidden>Seleccione una opción</option>
+                                <option value="TEXTO">TEXTO</option>
+                                <option value="NUMERICO">NUMERICO</option>
+                                <option value="BOLEANO">BOLEANO</option>
+                                <option value="FECHA">FECHA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Valor Inicial:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Ingrese valor inicial" class="input_pequeños">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Longitud del campo:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="number" placeholder="Ingrese la logitud del campo" class="input_pequeños" formControlName="vr_longdato_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Orden:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Ingrese el orden" class="input_medianos" formControlName="vr_orden_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Control Padre:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Correo electronico" class="input_grandes" formControlName="vr_codpadre_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for=""># Columnas Group:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="number" placeholder="Correo electronico" class="input_pequeños" disabled value="1">
+                            <input type="checkbox" name="" id="" class="lateral_check" formControlName="vr_referen_paci_dhd"> <label class="margin0" for="">Referencia pacientes</label>
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Campo Key:</label>
+                        </div>
+                        <div class="input__con">
+                            <input type="text" placeholder="Ingres la Key" class="input_grandes" formControlName="vr_key_dhd">
+                        </div>
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Tipo de reporte:</label>
+                        </div>
+                        <div class="input__con">
+                            <div class="contenedor_seleccion">
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_sexo_pacien_dhd" name="vr_sexo_pacien_dhd" value="Ambos" class="radioSelecion"> <label for="">Ambos</label>
+                                </div>
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_sexo_pacien_dhd" name="vr_sexo_pacien_dhd" value="Masculino" class="radioSelecion"> <label for="">Masculino</label>
+                                </div>
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_sexo_pacien_dhd" name="vr_sexo_pacien_dhd" value="Femenino" class="radioSelecion"> <label for="">Femenino</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelCheck">
+                        <div class="check">
+                          <input type="checkbox" formControlName="vr_obligatorio_dhd"> <label for="">Obligatorio</label>
+                        </div>  
+                        <div class="check">
+                          <input type="checkbox" formControlName="vr_enable_dhd"> <label for="">Enable</label>
+                        </div>
+                        <div class="check">
+                          <input type="checkbox" formControlName="vr_visible_dhd"> <label for="">Visible</label>
+                        </div>
+                        <div class="check">
+                            <input type="checkbox" formControlName="vr_estado_dhd"> <label for="">Estado</label>
+                        </div> 
+                    </div>
+                    <div class="paneles">
+                        <div class="label__con">
+                            <label for="">Tipo de items:</label>
+                        </div>
+                        <div class="input__con">
+                            <div class="contenedor_seleccion">
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_etiqueta_dhd" name="vr_etiqueta_dhd" value="Estáticos" class="radioSelecion"> <label for="">Estáticos</label>
+                                </div>
+                                <div class="select">
+                                    <input type="radio" formControlName="vr_etiqueta_dhd" name="vr_etiqueta_dhd" value="Consulta SQL " class="radioSelecion"> <label for="">Consulta SQL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="paneles">
+                        <div class="tabla_con">
+                            <table border="1">
+                                <tr>
+                                    <thead>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                    </thead>
+                                </tr>
+                                <tr>
+                                    <tbody>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                    </tbody>
+                                </tr>
+                            </table>
+                        </div>
+                    </div> -->
+                    <div class="button__con">
+                        <button type="submit" class="button_enviar"  id="boton" >Generar historia</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

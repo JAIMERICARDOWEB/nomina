@@ -1,0 +1,192 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Confirmar citas">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" [formGroup]="formulario">
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Fecha y hora:</div>
+                                <input type="date" class="form-control form-control-sm campos_form">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Identificación:</div>
+                                <div class="d-flex">
+                                <!-- (blur)="bus_paciente()" -->
+                                <input type="text" #autofocus (keypress)="soloNumeros($event, 20)" class="form-control inputBusqueda campos_form" formControlName="idpacien1"  maxlength="20"/>
+                                <span class="input-group-text lupa campos_form" id="basic-addon2" (click)="bus_paciente()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                                <!-- <button (click)="bus_paciente()" style="display: none;"></button> -->
+                                <input type="submit" value="" style="display: none;">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Nombres:</div>
+                                <input type="text" (keypress)="soloLetras($event)" formControlName="Nombrepaciente" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Edad Paciente:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Dirección:</div>
+                                <input type="text" formControlName="direccion" class="form-control form-control-sm campos_form">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Télefono Paciente:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Nombre acompañante:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Tipo afiliación:</div>
+                                <dx-select-box formControlName="afiliacion" [dataSource]="" class="campos_form" valueExpr="afiliacion" displayExpr="nom_med1" [searchEnabled]="true" [searchExpr]="'nom_med1'">
+                                </dx-select-box>
+                            </div>
+                            <div>
+                                <div>Nivel:</div>
+                                <dx-select-box formControlName="nivel" [dataSource]="" class="campos_form" valueExpr="nivel" displayExpr="nom_med1" [searchEnabled]="true" [searchExpr]="'nom_med1'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Email paciente:</div>
+                                <input type="text" formControlName="email_pacit" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Contrato:</div>
+                                <dx-select-box [dataSource]="contratos" (onValueChanged)="Contratoseleccionado($event)" class="campos_form" valueExpr="vr_cod_contra" displayExpr="vr_nom_contra" [searchEnabled]="true" [searchExpr]="'vr_nom_contra'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Referencia:</div>
+                                <dx-select-box [dataSource]="" class="campos_form" valueExpr="" displayExpr="" [searchEnabled]="true" [searchExpr]="''">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Prestador:</div>
+                                <dx-select-box [dataSource]="prestador" class="campos_form" valueExpr="vr_cod_contrar" displayExpr="vr_nom_contrar" [searchEnabled]="true" [searchExpr]="'vr_nom_contrar'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Código:</div>
+                                <dx-select-box [dataSource]="servicios" class="campos_form" valueExpr="vr_cod_con" displayExpr="vr_nom_con" [searchEnabled]="true" [searchExpr]="'vr_nom_con'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Centro de costo:</div>
+                                <dx-select-box [dataSource]="centrocosto" class="campos_form" valueExpr="vr_cod_ubi" displayExpr="vr_nom_ubi" [searchEnabled]="true" [searchExpr]="'vr_nom_ubi'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Diagnosticos:</div>
+                                <dx-select-box [dataSource]="diagnosticos" class="campos_form" valueExpr="vr_cod_diag" displayExpr="vr_nom_diag" [searchEnabled]="true" [searchExpr]="'vr_nom_diag'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Autorización N°:</div>
+                                <dx-select-box [dataSource]="" class="campos_form" valueExpr="" displayExpr="" [searchEnabled]="true" [searchExpr]="''">
+                                </dx-select-box>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Cantidad Autorizada:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div>
+                                <div>Fecha de vencimiento:</div>
+                                <input type="date" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Cantidad:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Valor:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 12px;">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary"><i class="feather icon-check-circle"></i>Agregar</button>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px;">
+                            <dx-data-grid class="grid" [dataSource]="" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                            [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                            >
+                            <dxo-paging [enabled]="true"></dxo-paging>
+                            <dxo-editing
+                              mode="row"
+                              [allowDeleting]="true"
+                            >
+                            </dxo-editing>
+                            <!-- <dxi-column dataField="" caption="Codigo" width="80"></dxi-column> Codigo del servicio -->
+                            <dxi-column dataField="" caption="Descripción" width="250" ></dxi-column> <!-- Descripción del servicio -->
+                            <dxi-column dataField="" caption="Cantidad" width="80"></dxi-column> <!-- columnAutoWidth -->
+                            <dxi-column dataField="" caption="Valor" width="80"></dxi-column> <!-- columnAutoWidth -->
+                            <dxi-column dataField="" caption="Autorización" width="200"></dxi-column> <!-- columnAutoWidth -->
+                            </dx-data-grid>
+                            <!-- <div style="color: #dc3545 !important;" [ngClass]="{'displaynone': !sedesSeleccionadaVacia}">
+                                Debe agregar minimo una sede y su centro de costo*
+                            </div> -->
+                        </div>
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Tipo de pago:</div>
+                                <dx-select-box [dataSource]="" class="campos_form" valueExpr="" displayExpr="" [searchEnabled]="true" [searchExpr]="''">
+                                </dx-select-box>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Valor:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div>
+                                <div>Código:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Código:</div>
+                                <input type="text" class="form-control form-control-sm campos_form">
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

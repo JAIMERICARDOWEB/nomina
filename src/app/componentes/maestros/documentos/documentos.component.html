@@ -1,0 +1,156 @@
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+    <div class="col-sm-12">
+        <app-card cardTitle="Definición de Documentos">
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <form class="was-validated" [formGroup]="formulario">
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Tipo Documento</label>
+                            <div style="display: flex">
+                                <input type="text" class="form-control" formControlName="tipodcto" style="height: 35px; width: 150px;" maxlength="5" required />
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Descripción</label>
+                            <input type="text" class="form-control" formControlName="descripcion" style="height: 35px;" maxlength="500" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label for="SelectImpresion">Tipo de Movimiento</label>
+                            <select class="form-select" aria-label="select example" formControlName="id_tipomvto" maxlength="30" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Factura de Venta">Factura de Venta</option>
+                                <option value="Factura de Compra">Factura de Compra</option>
+                                <option value="Recibos de Caja">Recibos de Caja</option>
+                                <option value="Comprobante de Egreso">Comprobante de Egreso</option>
+                                <option value="Inventario">Inventario</option>
+                                <option value="Nota Crédito CxC">Nota Crédito CxC</option>
+                                <option value="Nota Débito CxC">Nota Débito CxC</option>
+                                <option value="Nota Crédito CxP">Nota Crédito CxP</option>
+                                <option value="Nota Débito CxP">Nota Débito CxP</option>
+                                <option value="Causación CxP">Causación CxP</option>
+                                <option value="Nota Contable">Nota Contable</option>
+                                <option value="Cotización en Venta">Cotización en Venta</option>
+                                <option value="Cotización en Compra">Cotización en Compra</option>
+                                <option value="Remisión en Compra">Remisión en Compra</option>
+                                <option value="Remisión en Venta">Remisión en Venta</option>                              
+                                <option value="Orden de Compra">Orden de Compra</option>
+                                <option value="Pedido">Pedido</option>
+                                <option value="Recibo de Caja Menor">Recibo de Caja Menor</option>
+                                <option value="Activos Fijos">Activos Fijos</option>
+                                
+                            </select>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="check_inventario" formControlName="afecinv" />
+                            <label class="form-check-label" for="check_inventario">Maneja Inventario</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="check_cartera" formControlName="afeccxcxp" />
+                            <label class="form-check-label" for="check_cartera">Afecta cartera y/o cuentas por pagar</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="check_contabilidad" formControlName="afecta_cont" />
+                            <label class="form-check-label" for="check_contabilidad">Afecta contabilidad</label>
+                        </div>
+
+                        <p style="margin-top: 30px; color: black;">Parámetros</p>
+                        <hr />
+
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label for="SelectImpresion">Modo consecutivo</label>
+                            <select class="form-select" aria-label="select example" formControlName="modoconsec" maxlength="10" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Automático">Automático</option>
+                                <option value="Manual">Manual</option>                                
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Consecutivo</label>
+                            <input type="text" class="form-control" formControlName="consec" (keypress)="soloNumeros($event, 20)" style="height: 35px;" required />                            
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Inicial</label>
+                            <input type="text" class="form-control" formControlName="conseci" (keypress)="soloNumeros($event, 20)" style="height: 35px;" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Final</label>
+                            <input type="text" class="form-control" formControlName="consecf" (keypress)="soloNumeros($event, 20)" style="height: 35px;" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Avisar al faltar</label>
+                            <input type="text" class="form-control" formControlName="alerta" (keypress)="soloNumeros($event, 20)" style="height: 35px;" />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Fecha de resolución</label>
+                            <dx-date-box type="date" formControlName="fecharesol" [height]="35">
+                                <dx-validator>
+                                    <dxi-validation-rule
+                                      type="required"
+                                      message="Esta fecha es requerida!"
+                                    ></dxi-validation-rule>
+                                  </dx-validator>
+                            </dx-date-box>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>No. de resolución</label>
+                            <input type="text" class="form-control" formControlName="no_resolucion" (keypress)="soloNumeros($event, 20)" style="height: 35px;" required/>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Formato de impresión</label>
+                            <input type="text" class="form-control" formControlName="formaimp" style="height: 35px;" maxlength="20"/>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Prefijo</label>
+                            <input type="text" class="form-control" formControlName="prefijo" style="height: 35px;" maxlength="20"/>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Clave técnica para FE</label>
+                            <textarea rows="2" class="form-control" formControlName="clave_tec_fe" maxlength="100"></textarea>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Definición</label>
+                            <textarea rows="5" class="form-control" formControlName="definicion" maxlength="800"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="col-md-8">
+                    <dx-data-grid class="grid" [dataSource]="DS" [allowColumnResizing]="true" [columnAutoWidth]="true" [height]="1200"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        (onSelectionChanged)="onSelectionChanged($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="tipodcto" caption="Código" width="60"></dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descripción" width="columnAutoWidth"></dxi-column>
+                        <dxi-column dataField="id_tipomvto" caption="Movimiento" width="150"></dxi-column>
+                        <dxi-column dataField="afecinv" caption="Inv" width="50"></dxi-column>
+                        <dxi-column dataField="afeccxcxp" caption="Cart" width="50"></dxi-column>
+                        <dxi-column dataField="afecta_cont" caption="Cont" width="50"></dxi-column>
+
+                    </dx-data-grid>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div *ngIf="formulario.invalid">
+                        <p style="font-size: 12px; color: red;">Corrija los campos en rojo!</p>
+                    </div>
+                    <button type="submit" class="btn btn-light" (click)="limpiar()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="insert()"><i class="feather icon-check-circle"></i>Guardar</button>
+                    <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid" (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button>
+                </div>
+            </div>
+
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+.alerta{
+    position: fixed;
+    text-align: left;
+    z-index: 100;
+    margin-bottom: 0;
+    right: 0;
+    margin-right: 7px;
+    width: 100%;
+    max-width: 500px;
+    -moz-transform: translateX(507px);
+    -webkit-transform: translateX(507px);
+    -o-transform: translateX(507px);
+    -ms-transform: translateX(507px);
+    transform: translateX(507px);
+    opacity: 0;
+    animation: aparecer 3s;
+}
+@keyframes aparecer {
+    0%{
+        -moz-transform: translateX(507px);
+        -webkit-transform: translateX(507px);
+        -o-transform: translateX(507px);
+        -ms-transform: translateX(507px);
+        transform: translateX(507px);
+        opacity: 0;
+    }
+    20%{
+        -moz-transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+        -o-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    80%{
+        -moz-transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+        -o-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+        transform: translateX(0px);
+        opacity: 1;
+    }
+    100%{
+        -moz-transform: translateX(507px);
+        -webkit-transform: translateX(507px);
+        -o-transform: translateX(507px);
+        -ms-transform: translateX(507px);
+        transform: translateX(507px);
+    }
+}

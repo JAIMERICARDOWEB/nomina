@@ -1,0 +1,25 @@
+<!-- <div style="margin-left: -10px; margin-right: -10px;"> -->
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-accent-primary">
+  
+          <div class="card-header">
+            <mat-tab-group mat-stretch-tabs="true" style="margin-top: -5px; margin-left: -5px; margin-right: -5px;" #tabGroup [disableRipple]="true" [selectedIndex]="selected.value" (selectedTabChange)="cambiaNombreVentana($event)">
+              <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.tabName">
+                <ng-template mat-tab-label>
+                  <span class="etiqueta_tab">
+                      {{tab.tabName}}
+                  </span>
+                  <img src="../../../assets/icon/close_tab.svg" style="margin-left: 5px; width: 13px; height: 13px;" class="iconos_tab" (click)="removeTab(index)">
+                </ng-template>
+                <ng-container *ngComponentOutlet="tab.selector"></ng-container>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>

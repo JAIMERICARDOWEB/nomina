@@ -1,0 +1,121 @@
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+    <div class="col-sm-12">
+        <app-card cardTitle="Mantenimiento de Terceros">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="was-validated" [formGroup]="formulario">
+
+                        <div class="form-group">
+                            <label for="SelectImpresion">Tipo</label>
+                            <select class="form-select" aria-label="select example" style="height: 35px; width: 250px;"
+                                formControlName="id_tipomvto" maxlength="30" required>
+                                <option value="">Seleccione...</option>
+                                <option value="NI">Nit</option>
+                                <option value="CC">Cédula de ciudadanía</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="RC">Registro civil</option>
+                                <option value="TE">Tarjeta de extranjería</option>
+                                <option value="CE">Cédula de extranjería</option>
+                                <option value="PA">Pasaporte</option>
+                                <option value="NU">NUIP</option>
+                                <option value="OT">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="display: flex; margin-top: 10px">
+                            <div class="form-group">
+                                <label>Identificación</label>
+                                <input type="text" id="id" autofocus class="form-control" formControlName="id"
+                                    style="height: 35px; width: 170px;" maxlength="10" required />
+                            </div>
+                            <div class="form-group" style="margin-left: 5px;">
+                                <label>Dv</label>
+                                <input type="text" class="form-control" formControlName="cencos"
+                                    style="height: 35px; width: 80px;" maxlength="1" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex; margin-top: 10px">
+                            <div class="form-group">
+                                <label>Primer nombre</label>
+                                <input type="text" class="form-control" formControlName="id"
+                                    style="height: 35px; width: 250px;" maxlength="50" required />
+                            </div>
+                            <div class="form-group" style="margin-left: 5px;">
+                                <label>Segundo nombre</label>
+                                <input type="text" class="form-control" formControlName="id"
+                                    style="height: 35px; width: 250px;" maxlength="50" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex; margin-top: 10px">
+                            <div class="form-group">
+                                <label>Primer apellido</label>
+                                <input type="text" class="form-control" formControlName="id"
+                                    style="height: 35px; width: 250px;" maxlength="50" required />
+                            </div>
+                            <div class="form-group" style="margin-left: 5px;">
+                                <label>Segundo apellido</label>
+                                <input type="text" class="form-control" formControlName="id"
+                                    style="height: 35px; width: 250px;" maxlength="50" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 10px">
+                            <label>Nombre Completo/Razón Social</label>
+                            <input type="text" class="form-control" formControlName="cencos"
+                                style="height: 35px; width: 505px;" maxlength="300" required />
+                        </div>
+                        <div class="form-group" style="margin-top: 10px">
+                            <label>Establecimiento</label>
+                            <input type="text" class="form-control" formControlName="cencos"
+                                style="height: 35px; width: 505px;" maxlength="300" required />
+                        </div>
+
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Ubicación</p>
+                        <hr />
+
+                        <div class="form-group" style="margin-top: 10px">
+                            <label>Dirección</label>
+                            <input type="text" class="form-control" formControlName="cencos"
+                                style="height: 35px; width: 505px;" maxlength="300" required />
+                        </div>
+
+                        <!-- <div class="form-group" style="margin-top: 10px">
+                            <dx-select-box [dataSource]="DS_ciudades" displayExpr="Name" valueExpr="ID"
+                            [inputAttr]="{ 'aria-label': 'Product' }" [searchMode]="searchModeOption"
+                            [searchExpr]="searchExprOption" [searchTimeout]="searchTimeoutOption"
+                            [minSearchLength]="minSearchLengthOption" [searchEnabled]="true"
+                            [showDataBeforeSearch]="showDataBeforeSearchOption"></dx-select-box>
+                        </div> -->
+                        
+
+
+
+
+
+
+
+                        <!-- BOTONES -->
+
+                        <div style="margin-top: 20px">
+                            <div *ngIf="formulario.invalid">
+                                <p style="font-size: 12px; color: red;">Corrija los campos en rojo!</p>
+                            </div>
+                            <button type="submit" class="btn btn-light" (click)="limpiar()"><i
+                                    class="feather icon-thumbs-up"></i>Nuevo</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid"
+                                (click)="insert()"><i class="feather icon-check-circle"></i>Guardar</button>
+                            <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"
+                                (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </app-card>
+    </div>
+</div>

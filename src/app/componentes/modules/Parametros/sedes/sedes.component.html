@@ -1,0 +1,83 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Creación de Sedes">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" [formGroup]="formulario">
+                        <div class="row">
+                            <div>
+                                <div>Nombre de la sede:</div>
+                                <input type="text" class="form-control campos_form" formControlName="nombre1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Dirección:</div>
+                                <input type="text" class="form-control campos_form" formControlName="direccion1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Télefono:</div>
+                                <input type="text" class="form-control campos_form" formControlName="telefonos1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Codigo del prestador:</div>
+                                <input type="text" class="form-control campos_form" formControlName="cod_presta1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Email:</div>
+                                <input type="text" class="form-control campos_form" formControlName="email1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Nombre alterno de la sede:</div>
+                                <input type="text" class="form-control campos_form" formControlName="nombresede1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Centro de costo:</div>
+                                <dx-select-box formControlName="vr_cod_ubi1" [dataSource]="centrocosto" class="campos_form"  valueExpr="vr_cod_ubi" displayExpr="vr_nom_ubi" [searchEnabled]="true" [searchExpr]="'vr_nom_ubi'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px;">
+                            <dx-data-grid class="grid" [dataSource]="" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                            [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                            >
+                            <dxo-paging [enabled]="true"></dxo-paging>
+                            <dxo-editing
+                              mode="row"
+                              [allowDeleting]="true"
+                            >
+                            </dxo-editing>
+                            <dxi-column dataField="" caption="Codigo" width="200"></dxi-column> <!-- columnAutoWidth -->
+                            <dxi-column dataField="" caption="Nombre" width="columnAutoWidth" [allowEditing]="false"></dxi-column>
+                            </dx-data-grid>
+                            <!-- <div style="color: #dc3545 !important;" [ngClass]="{'displaynone': !sedesSeleccionadaVacia}">
+                                Debe agregar minimo una sede y su centro de costo*
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                    <!--* *ngIf="formulario.invalid" [disabled]="formulario.invalid" (click)="BotonesOpciones()" (click)="ConfirmarGuardado()" -->
+                                </div>
+                                <button type="submit" class="btn btn-primary"  ><i class="feather icon-check-circle"></i>Guardar</button>
+                                <button class="btn btn-light" ><i class="feather icon-thumbs-up"></i>Nuevo</button>
+        
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

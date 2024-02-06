@@ -1,0 +1,99 @@
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+    <div class="col-sm-12">
+        <app-card cardTitle="Plan de Cuentas">
+
+
+            <div class="row">
+                <div class="col-md-5">
+                    <form class="was-validated" [formGroup]="formulario">
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Cuenta</label>
+                            <input type="text" class="form-control" formControlName="codcta"
+                                style="height: 35px; width: 170px;" placeholder="Cuenta" maxlength="16" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Descripción</label>
+                            <input type="text" class="form-control" formControlName="descripcion" style="height: 35px;"
+                                placeholder="Descripción" required />
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="check_auxiliar"
+                                formControlName="ctaaux" />
+                            <label class="form-check-label" for="check_auxiliar">Auxiliar</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="check_cencos" formControlName="reqcc" />
+                            <label class="form-check-label" for="check_cencos">Req. Centro de costo</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="check_corriente"
+                                formControlName="corriente" />
+                            <label class="form-check-label" for="check_corriente">Corriente</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label for="SelectAfecta">Afectación</label>
+                            <select class="form-select" aria-label="select example" formControlName="afecta" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="N/A">N/A</option>
+                                <option value="CXC">CXC</option>
+                                <option value="CXP">CXP</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label for="SelectAfecta">Naturaleza</label>
+                            <select class="form-select" aria-label="select example" formControlName="nat" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="D">D</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Porc. Base</label>
+                            <input type="number" step="0.01" class="form-control" formControlName="porc_base"
+                                style="height: 35px;" placeholder="% base" />
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px">
+                            <label for="SelectAfecta">Clasificación</label>
+                            <select class="form-select" aria-label="select example" formControlName="id_clasificacion"
+                                required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="N/A">Ninguna</option>
+                            </select>
+                        </div>
+
+
+                        <div *ngIf="formulario.invalid">
+                            <p style="font-size: 12px; color: red;">Corrija los campos en rojo!</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="insert()"><i class="feather icon-thumbs-up"></i>Guardar</button>
+                        <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid" (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button>
+                    </form>
+                </div>
+
+                <div class="col-md-7">
+                    <dx-data-grid class="grid" [dataSource]="DS" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        (onSelectionChanged)="onSelectionChanged($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="codcta" caption="Cuenta" width="120" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descripción" width="columnAutoWidth"></dxi-column>
+                        <dxi-column dataField="ctaaux" caption="Aux" width="60"></dxi-column>
+                        <dxi-column dataField="reqcc" caption="ReqCC" width="60"></dxi-column>
+                        <dxi-column dataField="afecta" caption="Afecta" width="50"></dxi-column>
+                        <dxi-column dataField="nat" caption="Nat" width="50"></dxi-column>
+
+                    </dx-data-grid>
+                </div>
+
+            </div>
+
+        </app-card>
+    </div>
+</div>

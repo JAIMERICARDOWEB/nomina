@@ -1,0 +1,55 @@
+<div class="container_general_citas_medicas">
+  <div class="container_lateral_derecho">
+    <div class="titulo_container_lateral_derecho" id="titulo_container_lateral_derecho">
+      <h2 [ngClass]="{'openClose': openClose}">Calendario</h2>
+      <button (click)="ocultarMenuLateralDerecho()" [ngClass]="{'rotarIcono180': openClose}"><svg
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevrons-left">
+          <polyline points="11 17 6 12 11 7" />
+          <polyline points="18 17 13 12 18 7" />
+        </svg></button>
+    </div>
+    <div class="con_formulario" [ngClass]="{'openClose': openClose}">
+      <form action="">
+        <dx-date-box type="date" [value]="now" [inputAttr]="{ 'aria-label': 'Date' }">
+        </dx-date-box>
+      </form>
+      
+    </div>
+    <div class="tabla_profecionales" [ngClass]="{'openClose': openClose}">
+      <div class="menu_lateral_profesionales" [ngClass]="{'openClose': openClose}">
+        <div class="mini_title">
+          Profesionales
+        </div>
+        <dx-tree-list id="employees" [dataSource]="data" keyExpr="IDXD" parentIdExpr="Head_ID" [showRowLines]="true"
+          [showBorders]="true" [columnAutoWidth]="true" [expandedRowKeys]="[1, 2, 10]"
+          (onSelectionChanged)="onSelectionChanged($event)" [selection]="selection">
+          <!-- [(selectedRowKeys)]="selectedRowKeys" -->
+          <!-- (onRowPrepared)="onRowPrepared($event)" -->
+
+          <dxo-selection mode="multiple" [recursive]="recursiveSelectionEnabled" [showCheckBoxesMode]="'none'">
+          </dxo-selection>
+          <dxi-column dataField="Full_Name" caption="Full Name"></dxi-column>
+          <!-- <dxi-column
+            dataField="Hire_Date"
+            caption="Hire Date"
+            dataType="date"
+            [width]="120"
+          ></dxi-column> -->
+        </dx-tree-list>
+      </div>
+    </div>
+    <div>
+      <!-- <button (click)="generateComponent(1)">Prueba</button> -->
+      
+    </div>
+  </div>
+
+  <div class="scrollable">
+  <ng-template class="templatesheduler" appCitasSheduler></ng-template>
+  </div>
+
+
+
+</div>

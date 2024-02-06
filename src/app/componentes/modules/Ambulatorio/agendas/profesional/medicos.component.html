@@ -1,0 +1,332 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Creación de profesionales">
+            <div class="row">
+                <div class="col-md-5">
+                    <form [formGroup]="formulario">
+                        <form [formGroup]="formBusqueda" (ngSubmit)="bus_paciente()">
+                            <div class="row row_container">
+                                <div class="mb-3 col-md-6">
+                                    <div>Identificación:</div>
+                                    <div class="input-group mb-2">
+                                        <input type="text" #autofocus formControlName="id_med1"
+                                            (keypress)="soloNumeros($event, 20)" style="text-transform:uppercase"
+                                            class="form-control inputBusqueda campos_form" maxlength="20" minlength="5"
+                                            [ngClass]="{'is-invalid': id_med1.invalid && (id_med1.dirty || id_med1.touched || saltarAlertas),
+                                                'is-valid': id_med1.valid && (id_med1.dirty || id_med1.touched ||   saltarAlertas)}" pattern="^[0-9]+">
+                                        <span class="input-group-text lupa campos_form" id="basic-addon2"
+                                            (click)="bus_paciente()"><i class="feather icon-search"></i></span>
+                                        <input type="submit" value="" style="display: none;">
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <div>Tipo:</div>
+                                    <select formControlName="tipo_id_med1" style="text-transform:uppercase"
+                                        class="form-select campos_form"
+                                        [ngClass]="{'is-invalid': tipo_id_med1.invalid && (tipo_id_med1.dirty || tipo_id_med1.touched || saltarAlertas),
+                                                    'is-valid': tipo_id_med1.valid && (tipo_id_med1.dirty || tipo_id_med1.touched ||   saltarAlertas)}">
+                                        <option value="" hidden>Seleccione una Opción</option>
+                                        <option *ngFor="let element of tipo" value="{{element.ttipoidpacien1}}">
+                                            {{element.descripcion1}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+    
+                        <div class="row">
+                            <div>
+                                <div>Nombre:</div>
+                                <input type="text" (keypress)="soloLetrasEspacio($event)" formControlName="nom_med1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="40"
+                                    [ngClass]="{'is-invalid': nom_med1.invalid && (nom_med1.dirty || nom_med1.touched || saltarAlertas),
+                                            'is-valid': nom_med1.valid && (nom_med1.dirty || nom_med1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Dirección:</div>
+                                <input type="text" formControlName="dir_med1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="100"
+                                    [ngClass]="{'is-invalid': dir_med1.invalid && (dir_med1.dirty || dir_med1.touched || saltarAlertas),
+                                            'is-valid': dir_med1.valid && (dir_med1.dirty || dir_med1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Reg Médico N°:</div>
+                                <input type="text" formControlName="reg_med1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="20"
+                                    [ngClass]="{'is-invalid': reg_med1.invalid && (reg_med1.dirty || reg_med1.touched || saltarAlertas),
+                                            'is-valid': reg_med1.valid && (reg_med1.dirty || reg_med1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Lugar de expedición:</div>
+                                <input type="text" (keypress)="soloLetrasEspacio($event)" formControlName="lugar_exp_reg1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="20"
+                                    [ngClass]="{'is-invalid': lugar_exp_reg1.invalid && (lugar_exp_reg1.dirty || lugar_exp_reg1.touched || saltarAlertas),
+                                            'is-valid': lugar_exp_reg1.valid && (lugar_exp_reg1.dirty || lugar_exp_reg1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Teléfono:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 30)" formControlName="tel_med11"
+                                    style="text-transform:uppercase" class="form-control form-control-sm campos_form"
+                                    maxlength="30"
+                                    [ngClass]="{'is-invalid': tel_med11.invalid && (tel_med11.dirty || tel_med11.touched || saltarAlertas),
+                                            'is-valid': tel_med11.valid && (tel_med11.dirty || tel_med11.touched || saltarAlertas)}"
+                                    pattern="^[0-9]+">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Celular:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 30)" formControlName="tel_med21"
+                                    style="text-transform:uppercase" class="form-control form-control-sm campos_form"
+                                    maxlength="30"
+                                    [ngClass]="{'is-invalid': tel_med21.invalid && (tel_med21.dirty || tel_med21.touched || saltarAlertas),
+                                            'is-valid': tel_med21.valid && (tel_med21.dirty || tel_med21.touched || saltarAlertas)}"
+                                    pattern="^[0-9]+">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Email:</div>
+                                <input type="text" formControlName="email_med1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="80"
+                                    [ngClass]="{'is-invalid': email_med1.invalid && email_med1.errors.pattern && (email_med1.dirty || email_med1.touched || saltarAlertas),
+                                            'is-valid': email_med1.valid && (email_med1.dirty || email_med1.touched || saltarAlertas)}">
+                                <div class="invalid-feedback">
+                                    Los datos del correo deben coincidir con el tipo email(example&#64;example.com)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Firma digital:</div>
+                                <div class="input-group mb-2">
+                                    <input type="file" id="filePicker" (change)="handleFileSelect($event)"
+                                    style="text-transform:uppercase" class="form-control form-control-sm campos_form"
+                                    formControlName="firma_base641">
+                                    <span class="input-group-text lupa campos_form" 
+                                        (click)="ocultar_mostrar_container_firmas(0)"><i id="conFirmasMostrarOcultar" class="feather icon-eye-off"></i></span> <!-- eye-off -->
+                                </div>
+                                
+                                <div class="firma_container" [ngClass]="{'ocultar_container': ocultarMostrarboolean}">
+                                    <div class="container_que_no_debe_superar">
+                                        <img src="" alt="" id="img_firma">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-4 col-md-6">
+                                <div>Clasificación para cirugías:</div>
+                                <div class="form-check-label tipo">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck7" type="radio"
+                                            formControlName="clascx1" value="1" name="clascx1"
+                                            [ngClass]="{'is-invalid': clascx1.invalid && (clascx1.dirty || clascx1.touched || saltarAlertas),
+                                                'is-valid': clascx1.valid && (clascx1.dirty || clascx1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck7">Medicina General</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck8" type="radio"
+                                            formControlName="clascx1" value="2" name="clascx1"
+                                            [ngClass]="{'is-invalid': clascx1.invalid && (clascx1.dirty || clascx1.touched || saltarAlertas),
+                                                'is-valid': clascx1.valid && (clascx1.dirty || clascx1.touched || saltarAlertas)}">
+    
+                                        <label class="form-check-label" for="validationFormCheck8">Anestesiología</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck9" type="radio"
+                                            formControlName="clascx1" value="5" name="clascx1"
+                                            [ngClass]="{'is-invalid': clascx1.invalid && (clascx1.dirty || clascx1.touched || saltarAlertas),
+                                                'is-valid': clascx1.valid && (clascx1.dirty || clascx1.touched || saltarAlertas)}">
+    
+                                        <label class="form-check-label" for="validationFormCheck9">Especialidad</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck10" type="radio"
+                                            formControlName="clascx1" value="3" name="clascx1"
+                                            [ngClass]="{'is-invalid': clascx1.invalid && (clascx1.dirty || clascx1.touched || saltarAlertas),
+                                                'is-valid': clascx1.valid && (clascx1.dirty || clascx1.touched || saltarAlertas)}">
+    
+                                        <label class="form-check-label" for="validationFormCheck10">Instrumentación
+                                            Qx</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck11" type="radio"
+                                            formControlName="clascx1" value="4" name="clascx1"
+                                            [ngClass]="{'is-invalid': clascx1.invalid && (clascx1.dirty || clascx1.touched || saltarAlertas),
+                                                'is-valid': clascx1.valid && (clascx1.dirty || clascx1.touched || saltarAlertas)}">
+    
+                                        <label class="form-check-label" for="validationFormCheck11">Otros</label>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="row">
+    
+                            <div>
+                                <div>Tipo de trabajo:</div>
+                                <div class="form-check-label tipo">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck4" type="radio"
+                                            formControlName="tipo_trab1" value="0" name="tipo_trab1"
+                                            [ngClass]="{'is-invalid': tipo_trab1.invalid && (tipo_trab1.dirty || tipo_trab1.touched || saltarAlertas),
+                                                'is-valid': tipo_trab1.valid && (tipo_trab1.dirty || tipo_trab1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck4">Nomina</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck5" type="radio"
+                                            formControlName="tipo_trab1" value="1" name="tipo_trab1"
+                                            [ngClass]="{'is-invalid': tipo_trab1.invalid && (tipo_trab1.dirty || tipo_trab1.touched || saltarAlertas),
+                                                'is-valid': tipo_trab1.valid && (tipo_trab1.dirty || tipo_trab1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck5">Contrato</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck6" type="radio"
+                                            formControlName="tipo_trab1" value="2" name="tipo_trab1"
+                                            [ngClass]="{'is-invalid': tipo_trab1.invalid && (tipo_trab1.dirty || tipo_trab1.touched || saltarAlertas),
+                                                'is-valid': tipo_trab1.valid && (tipo_trab1.dirty || tipo_trab1.touched || saltarAlertas)}">
+    
+                                        <label class="form-check-label" for="validationFormCheck6">Por Evento</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>
+                                    Especialidad:
+                                </div>
+                                <div style="align-items: center;">
+                                    <select formControlName="cod_espe1" style="text-transform:uppercase"
+                                        class="form-select campos_form"
+                                        [ngClass]="{'is-invalid': cod_espe1.invalid && (cod_espe1.dirty || cod_espe1.touched || saltarAlertas),
+                                            'is-valid': cod_espe1.valid && (cod_espe1.dirty || cod_espe1.touched || saltarAlertas)}">
+                                        <option value="" hidden>Seleccionar una opción</option>
+                                        <option *ngFor="let element of data" value="{{element.cod_espe1}}">
+                                            {{element.nom_espe1}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+    
+    
+                            <div>
+                                <div>
+                                    Honorarios:
+                                </div>
+                                <input type="text" formControlName="por_hono1" (keypress)="soloNumeros($event, 10)"
+                                    style="text-transform:uppercase" class="form-control form-control-sm campos_form"
+                                    [ngClass]="{'is-invalid': por_hono1.invalid && (por_hono1.dirty || por_hono1.touched || saltarAlertas),
+                                            'is-valid': por_hono1.valid && (por_hono1.dirty || por_hono1.touched || saltarAlertas)}"
+                                    pattern="^[0-9]+">
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div>
+                                <div>Estado:</div>
+                                <div class="form-check-label tipo">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" #radioButton1 id="validationFormCheck2" value="1"
+                                            type="radio" formControlName="est_med1" name="est_med1"
+                                            [ngClass]="{'is-invalid': est_med1.invalid && (est_med1.dirty || est_med1.touched || saltarAlertas),
+                                                'is-valid': est_med1.valid && (est_med1.dirty || est_med1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck2">Activo</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" #radioButton2 id="validationFormCheck3" value="0"
+                                            type="radio" formControlName="est_med1" name="est_med1"
+                                            [ngClass]="{'is-invalid': est_med1.invalid && (est_med1.dirty || est_med1.touched || saltarAlertas),
+                                                'is-valid': est_med1.valid && (est_med1.dirty || est_med1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck3">Suspendido</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div for="flexSwitchCheckChecked">
+                                    Habilitar para formulación múltiple:
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input formControlName="multform1" class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckChecked"
+                                        [ngClass]="{'is-invalid': multform1.invalid && (multform1.dirty || multform1.touched || saltarAlertas),
+                                            'is-valid': multform1.valid && (multform1.dirty || multform1.touched || saltarAlertas)}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="formulario.invalid || formBusqueda.invalid">
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid"
+                                    (click)="BotonesOpciones(1)"><i
+                                        class="feather icon-check-circle"></i>{{nombreBoton}}</button>
+                                <button class="btn btn-light" (click)="BotonesOpciones(2)"><i
+                                        class="feather icon-thumbs-up"></i>Nuevo</button>
+                                <!-- <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"><i class="feather icon-slash"></i>Eliminar</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-7">
+                    <dx-data-grid class="grid" [dataSource]="DS" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        (onSelectionChanged)="onSelectionChanged($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="codigo1" caption="Código" width="60" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="id_med1" caption="Identificación" width="120"></dxi-column> <!-- columnAutoWidth -->
+                        <dxi-column dataField="nom_med1" caption="Nombre" width="columnAutoWidth"></dxi-column>
+                        <dxi-column dataField="nom_espe1" caption="Especialidad" width="150"></dxi-column>
+
+                    </dx-data-grid>
+                </div>
+
+                
+            </div>
+        </app-card>
+    </div>
+</div>
+
+
+<!-- 
+<div class="head_tr">
+    <div class="text_des">
+        <h2 class="tituloForm">Registro de Médicos</h2>
+        <div class="opcionesForm">
+            <button (click)="BotonesOpciones(1)" class="btn btn-primary"
+                                id="boton">{{nombreBoton}}</button>
+            <button class="btn btn-primary botonOpcionesForm" (click)="BotonesOpciones(2)">Nuevo</button>
+            <button class="botonOpcionesFormInfo" (click)="BotonesOpciones(3)"><i class="bi bi-info-circle"></i></button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container_fluid">
+            <div class="body">
+                <div class="tarjetas">
+                    <p style="margin-top: 10px;">Complete este formulario e ingrese los datos que son requeridos.</p>
+                    <hr>
+                <div class="submenu">
+                    
+                </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->

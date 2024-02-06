@@ -1,0 +1,36 @@
+
+
+      <button (click)="addSkill()">Agregar Skill</button>
+
+      <!-- <form [formGroup]="formParent" class="form-parent">
+          <div class="form-grid" formArrayName="skills">
+              <div class="form-field" *ngFor="let skill of getCtrl('skills',formParent).controls;index as formChild">
+                  <div class="form-block" [formGroupName]="formChild">
+                        <input type="text" placeholder="Lenguaje" formControlName="language">
+                  </div>
+              </div>
+          </div>
+      </form> -->
+<form [formGroup]="formParent" class="form-parent">
+    <div class="form-grid" formArrayName="skills">
+        <div class="paneles" *ngFor="let skill of getCtrl('skills',formParent).controls;index as formChild">
+            <div class="label__con">
+                <label for="">acompañante</label>
+            </div>
+            <div class="input__con" [formGroupName]="formChild">
+                <input type="text" placeholder="language" class="input_medianos" formControlName="language">
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="wrapper">
+    <div><b>Es valido el fomulario?: </b>
+        <span *ngIf="formParent.valid">✔</span>
+        <span *ngIf="!formParent.valid">🔴</span>
+    </div>
+    <pre>{{formParent.value | json}}</pre>
+</div>
+
+

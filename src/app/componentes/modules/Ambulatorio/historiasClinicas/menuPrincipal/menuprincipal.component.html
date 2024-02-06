@@ -1,0 +1,82 @@
+<div class="container__principal">
+    <div class="card__container">
+        <div class="container__encabezado">
+            <div class="encabezado">
+                <div class="bars__menu" (click)="animateBars()">
+                    <span [ngClass]="{'activeline1__bars__menu' : menuBars}"></span>
+                    <span [ngClass]="{'activeline2__bars__menu' : menuBars}"></span> <!-- button del menu -->
+                    <span [ngClass]="{'activeline3__bars__menu' : menuBars}"></span>
+                </div>
+                <div class="titulo">
+                    <h1>Información personal</h1> 
+                </div>
+                <!-- <a href="">agregar alertas del paciente</a> -->
+                <div class="linea">
+                    <hr>
+                </div>
+            </div>
+            <div class="bars__menuIzquierdo" (click)="DesplegarInformacion()">
+                <span [ngClass]="{'activeline1__bars__menu' : menuBarsIzquierdo}"></span>
+                <span [ngClass]="{'activeline2__bars__menu' : menuBarsIzquierdo}"></span> <!-- button del menu -->
+                <span [ngClass]="{'activeline3__bars__menu' : menuBarsIzquierdo}"></span>
+            </div>
+        </div>
+        <div class="lineabr">
+            <hr>
+        </div>
+        <div class="Informacion-Personal">
+            <div class="modulo1">
+                <div class="textcontent">
+                    <label for="">Identificación: <span> {{informacionPersonal.vr_tipo_id_pacien}} {{informacionPersonal.vr_id_pacien}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Fecha de nacimiento: <span>{{informacionPersonal.vr_fecha_nac}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Dirección: <span>{{informacionPersonal.vr_dir_pacien}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Municipio: <span>{{informacionPersonal.vr_nom_muni}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Aseguradora: <span>{{informacionPersonal.vr_nom_ase}}</span></label>
+                </div>
+            </div>
+            <div class="modulo2">
+                <div class="textcontent">
+                    <label for="">Nombre Completo: <span>{{informacionPersonal.vr_nom1}} {{informacionPersonal.vr_nom2}} {{informacionPersonal.vr_apell1}} {{informacionPersonal.vr_apell2}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Edad: <span>{{informacionPersonal.vr_edad}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Sexo: <span>{{informacionPersonal.vr_sexo_pacien}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Teléfono: <span>{{informacionPersonal.vr_tel_pacien}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Departamento: <span>{{informacionPersonal.vr_nombredepart}}</span></label>
+                </div>
+            </div>
+            <div class="modulo3">
+                <div class="textcontent">
+                    <label for="">Correo: <span>{{informacionPersonal.vr_emailpacien}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Tipo de afiliación: <span>{{informacionPersonal.vr_tipoafiliado}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Admisión: <span>{{admision}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Fecha: <span>{{fechaActual.toLocaleDateString()}} {{fechaActual.toLocaleTimeString()}}</span></label>
+                </div>
+                <div class="textcontent">
+                    <label for="">Cod Paciente: <span>{{informacionPersonal.vr_cod_pacien}}</span> </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-navhistoria></app-navhistoria>

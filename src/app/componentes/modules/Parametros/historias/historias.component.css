@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+.container__principal{
+    min-height: auto;
+    padding: 0;
+    position: relative;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+    animation-name: entrada;
+    animation-duration: 1s;
+}
+@keyframes entrada {
+  0% {
+    -moz-transform: scale(0) rotate(0deg);
+    -webkit-transform: scale(0) rotate(0deg);
+    -o-transform: scale(0) rotate(0deg);
+    -ms-transform: scale(0) rotate(0deg);
+    transform: scale(0) rotate(0deg);
+  }
+}
+::selection{ color: #fff; background-color: #4C4C4C;}
+.card__container{
+    max-width: 700px;
+    min-width: auto;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+    margin: 0 auto;
+    padding: 0px 20px 20px;
+    background-color: #ffffff;
+    word-wrap: break-word;
+}
+.encabezado{
+    padding: 20px 8px 8px 8px;
+    color: #4C4C4C;
+    font-family: 'Open Sans', sans-serif;
+    word-wrap: break-word;
+}
+.titulo h1{
+    display: block;
+    font-size: 28px;
+    font-weight: inherit;
+    color: #4C4C4C;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+.parrafo p{
+    font-size: 13.3333px;
+    margin: 14px 0px;
+}
+.paneles{
+    padding: 5px;
+}
+.panelCheck{
+  display: flex;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  color: #4C4C4C;
+  text-align: center;
+
+}
+.panelCheck .check{
+  margin: 0 auto;
+}
+.panelCheck .check label{
+  padding-left: 5px;
+}
+.label__con label{
+    padding: 8px 0px 0px 0px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+    float: left;
+    color: #4C4C4C;
+    width: 182px;
+}
+.select_con {
+  display: flex;
+  align-items: center;
+}
+.select_con select{
+  width: 250px;
+  height: 34px;
+}
+.lateral_check{
+  margin: 0 10px;
+}
+
+.input__con input{
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    border: 1px solid #838282;
+    color: #4C4C4C;
+    outline: none;
+}
+.input_segundarios{
+    margin-left: 16px;
+}
+.input_code{
+  width: 60px;
+  margin-right: 10px;
+}
+
+.input_pequeños{
+    width: 182px;
+    
+}
+.input_medianos{
+    width: 250px;
+}
+.input_grandes{
+    width: 400px;
+    
+}
+.contenedor_seleccion{
+  display: flex;
+  padding: 10px 0px;
+}
+.radioSelecion{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+textarea:focus, input:focus, input[type]:focus{
+    outline: 0 none;
+    animation-name: escalarInput;
+    animation-duration: 300ms;
+}
+@keyframes escalarInput {
+  0%{
+    transform: scale(1.0);
+  }
+  50%{
+    transform: scale(1.1);
+  }
+  100%{
+    transform: scale(1.0);
+  }
+}
+.button_enviar{
+    font-family: 'Open Sans', sans-serif;
+    padding: 15px 25px;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-top: 8px;
+    background-color: #4C4C4C;
+    color: #ffffff;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+}
+
+@media screen and (max-width: 955px) {
+    .input__con .input_pequeños, .input_medianos, .input_grandes, select{
+      width: 98% !important;
+      margin: 5px 0px !important;
+    }
+    .alert-error, .apellido {
+        margin: 0px 0px 0px 0px !important;
+    }
+    .contenedor_seleccion{
+      margin: 0 !important;
+      display: block;
+    }
+    .select{
+      display: flex !important;
+      align-items: center !important;
+    }
+    .select input{
+      width: auto !important;
+    }
+    .label__con label{
+      float: none;
+    }
+    .select_con{
+      display: block;
+    }
+}
+
+.textarea{
+    max-width: 670px;
+    width: 425px;
+    max-height: 200px;
+    min-width: 30px;
+    min-height: 50px;
+    border-radius: 5px;
+}
+.alert-error{
+    margin: 0px 0px 0px 185px;
+    position: absolute;
+}
+
+.error p{
+    color: red;
+    font-size: 12px;
+    margin: 0;
+}
+
+.apellido{
+    margin: 0px 0px 0px 400px;
+}
+
+.margin0{
+    margin-bottom: 0;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+/*In testing*/
+.sello{
+  background-color: rgb(0, 0, 255);
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+}
+.titulo{
+  display: flex;
+}
+/*In testing*/

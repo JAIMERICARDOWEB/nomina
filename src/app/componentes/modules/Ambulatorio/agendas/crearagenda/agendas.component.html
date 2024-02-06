@@ -1,0 +1,249 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Creación de agendas">
+            <div class="row">
+                <div class="col-md-5">
+                    <form [formGroup]="formulario">
+                        <div class="row">
+                            <div>
+                                <div>Profesional</div>
+                                <dx-select-box [dataSource]="countries" class="campos_form" formControlName="id_med1"
+                                    valueExpr="idmed1" displayExpr="nom_med1" [searchEnabled]="true"
+                                    [searchExpr]="'nom_med1'" (onValueChanged)="onValueChanged($event)"
+                                    [ngClass]="{'is-invalid-select': id_med1.invalid && (id_med1.dirty || id_med1.touched || saltarAlertas), 'is-valid-select': id_med1.valid && (id_med1.dirty || id_med1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 7px;">
+                            <div>
+                                <div>Nombre agenda:</div>
+                                <input type="text" formControlName="nom_agen1" placeholder="Ingrese el nombre"
+                                    style="text-transform:uppercase" class="form-control form-control-sm campos_form"
+                                    maxlength="20"
+                                    [ngClass]="{'is-invalid': nom_agen1.invalid && (nom_agen1.dirty || nom_agen1.touched || saltarAlertas), 'is-valid': nom_agen1.valid && (nom_agen1.dirty || nom_agen1.touched || saltarAlertas)}">
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-top: 7px;">
+                            <div>
+                                <div>Especialidad:</div>
+                                <dx-select-box [dataSource]="countriesEspecialidad" class="campos_form"
+                                    formControlName="cod_espe1" valueExpr="cod_espe1" displayExpr="nom_espe1"
+                                    [searchEnabled]="true" [searchExpr]="'nom_espe1'"
+                                    [ngClass]="{'is-invalid-select': cod_espe1.invalid && (cod_espe1.dirty || cod_espe1.touched || saltarAlertas), 'is-valid-select': cod_espe1.valid && (cod_espe1.dirty || cod_espe1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+
+                        </div>
+
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Inicio:</div>
+                                <input type="date" formControlName="fecha_ini1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="10"
+                                    [ngClass]="{'is-invalid': formulario.get('fecha_ini1').invalid && (formulario.get('fecha_ini1').dirty || formulario.get('fecha_ini1').touched || saltarAlertas), 'is-valid': formulario.get('fecha_ini1').valid && (formulario.get('fecha_ini1').dirty || formulario.get('fecha_ini1').touched || saltarAlertas)}">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Finalización:</div>
+                                <input type="date" formControlName="fecha_fin1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm campos_form" maxlength="10"
+                                    [ngClass]="{'is-invalid': formulario.get('fecha_fin1').invalid && (formulario.get('fecha_fin1').dirty || formulario.get('fecha_fin1').touched || saltarAlertas), 'is-valid': formulario.get('fecha_fin1').valid && (formulario.get('fecha_fin1').dirty || formulario.get('fecha_fin1').touched || saltarAlertas)}">
+                                <div *ngIf="formulario.hasError('fechaFinAnterior') && (formulario.get('fecha_fin1').dirty || formulario.get('fecha_fin1').touched)"
+                                    style="color: red;">
+                                    Fecha no puede ser anterior a inicio.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div>
+                                <div>Sedes:</div>
+                                <div>
+                                    <dx-select-box class="campos_form" [dataSource]="countriesSedes"
+                                        formControlName="idsede1" valueExpr="id1" displayExpr="nombre1"
+                                        [searchEnabled]="true" [searchExpr]="'nombre1'"
+                                        (onValueChanged)="sedeSeleccionada($event)"
+                                        [ngClass]="{'is-invalid-select': idsede1.invalid && (idsede1.dirty || idsede1.touched || saltarAlertas), 'is-valid-select': idsede1.valid && (idsede1.dirty || idsede1.touched || saltarAlertas)}">
+                                    </dx-select-box>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 20px;">
+                            <div>
+                                <dx-data-grid class="grid" [dataSource]="selectedSedes" [allowColumnResizing]="true"
+                                    [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true"
+                                    [selection]="{ mode: 'single' }">
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxo-paging [enabled]="true"></dxo-paging>
+                                    <dxi-column dataField="id1" caption="Id sede" width="150"></dxi-column>
+                                    <!-- columnAutoWidth -->
+                                    <dxi-column dataField="nombre1" caption="Nombre sede" width="columnAutoWidth"
+                                        [allowEditing]="false"></dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+
+                        <div class="row row_container">
+                            <div class="mb-3  col-md-6">
+                                <div>Agenda con horarios definidos</div>
+                                <input type="checkbox" formControlName="check1" id="checktiempo"
+                                    (click)="onCheckboxClick()"
+                                    style="text-transform:uppercase; margin-right: 8px; width: 20px; height: 20px;"
+                                    class="form-check-input">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <div>Cada/minutos:</div>
+                                <input style="text-transform:uppercase" pattern="[1-9][0-9]*"
+                                    class="form-control form-control-sm campos_form" type="text"
+                                    (keypress)="soloNumeros($event, 20)" formControlName="tiempo1" maxlength="5"
+                                    [ngClass]="{'is-invalid': tiempo1.invalid && (tiempo1.dirty || tiempo1.touched || saltarAlertas), 'is-valid': tiempo1.valid && (tiempo1.dirty || tiempo1.touched || saltarAlertas)}">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Observaciones:</div>
+                                <textarea formControlName="obser1" style="min-height: 100px;"
+                                    class="form-control form-control-sm campos_form" maxlength="225"></textarea>
+                                <!-- [ngClass]="{'is-invalid': obser1.invalid && (obser1.dirty || obser1.touched || saltarAlertas), 'is-valid': obser1.valid && (obser1.dirty || obser1.touched || saltarAlertas)}"> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Estado:</div>
+                                <div class="form-check-label tipo">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck1" value="Activa"
+                                            type="radio" name="clascx1" formControlName="clascx1"
+                                            [ngClass]="{'is-invalid': clascx1.invalid && (clascx1.dirty || clascx1.touched || saltarAlertas), 'is-valid': clascx1.valid && (clascx1.dirty || clascx1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck1">Activa</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" id="validationFormCheck2" value="Inactiva"
+                                            type="radio" name="clascx1" formControlName="clascx1">
+                                        <label class="form-check-label" for="validationFormCheck2">Inactiva</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 12px;">
+                            <div class="col-md-12">
+                                <div *ngIf="formulario.invalid">
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary"
+                                    [disabled]="formulario.invalid || cambiarBoton" (click)="guardarForm()"><i
+                                        class="feather icon-check-circle"></i>Guardar</button>
+                                <button class="btn btn-light" (click)="BotonesOpciones(2)"><i
+                                        class="feather icon-thumbs-up"></i>Nuevo</button>
+                                <!-- <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"><i class="feather icon-slash"></i>Eliminar</button> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-7">
+                    <div class="displaynone" [ngClass]="{'mostrarConAnimacion': desplegarTablaDias}">
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Agregar días</p>
+                        <hr />
+                        <div class="agregarDias" >
+                            <form [formGroup]="formularioAgregarDias"> <!-- ! Trabajando aqui -->
+                                <div class="row">
+                                    <div >
+                                        <div>Seleccione el día:</div>
+                                        <dx-select-box class="campos_form" [dataSource]="countriesDias"
+                                            formControlName="vr_dia" valueExpr="id_dia" displayExpr="nom_dia"
+                                            [searchEnabled]="false" [searchExpr]="'nom_dia'"
+                                            (onValueChanged)="habilitarFormularioDias()"
+                                            [ngClass]="{'is-invalid-select': idsede1.invalid && (idsede1.dirty || idsede1.touched || saltarAlertas), 'is-valid-select': idsede1.valid && (idsede1.dirty || idsede1.touched || saltarAlertas)}">
+                                        </dx-select-box>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>Hora de inicio:</div>
+                                        <input type="time" formControlName="vr_hora_inicial" style="text-transform:uppercase"
+                                            class="form-control form-control-sm campos_form" maxlength="10">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div>Hora final:</div>
+                                        <input type="time" formControlName="vr_hora_final" style="text-transform:uppercase"
+                                            class="form-control form-control-sm campos_form" maxlength="10">
+                                    </div>
+                                    <div *ngIf="formularioAgregarDias.hasError('fechaFinAnteriorHora') && (formularioAgregarDias.get('vr_hora_final').dirty || formularioAgregarDias.get('vr_hora_final').touched)"
+                                    style="color: red;">
+                                        La hora final no puede ser menor a la hora de inicio
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div >
+                                        <div>Selecciona una sede:</div>
+                                        <dx-select-box class="campos_form" [dataSource]="selectedSedes"
+                                            formControlName="vr_sede" valueExpr="id1" displayExpr="nombre1"
+                                            [searchEnabled]="false" [searchExpr]="'nombre1'"
+                                            (onValueChanged)="seleccionarDia($event, 2, [])"
+                                            [ngClass]="{'is-invalid-select': idsede1.invalid && (idsede1.dirty || idsede1.touched || saltarAlertas), 'is-valid-select': idsede1.valid && (idsede1.dirty || idsede1.touched || saltarAlertas)}">
+                                        </dx-select-box>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                            <dx-data-grid class="grid" [dataSource]="DiasSeleccionados" [allowColumnResizing]="true"
+                                [columnAutoWidth]="true" [showColumnLines]="true" [showBorders]="true"
+                                [selection]="{ mode: 'single' }">
+                                <dxo-editing   
+                                mode="row"
+                                [allowDeleting]="true"
+                                >
+                                </dxo-editing>
+                                <!-- <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+                                <!-- <dxo-search-panel [visible]="true"></dxo-search-panel> -->
+                                <!-- <dxo-export [enabled]="true"></dxo-export> -->
+                                <!-- <dxo-paging [enabled]="true"></dxo-paging> -->
+
+                                <dxi-column dataField="vr_dia" caption="Día" width="150"></dxi-column>
+                                <!-- columnAutoWidth -->
+                                <dxi-column dataField="vr_hora_inicial" caption="Hora inicial" width="200"
+                                    [allowEditing]="false"></dxi-column>
+                                <dxi-column dataField="vr_hora_final" caption="Hora final"
+                                    width="columnAutoWidth"></dxi-column>
+                                <dxi-column dataField="vr_sede" caption="Sede" width="columnAutoWidth"></dxi-column>
+                            </dx-data-grid>
+                                    <div class="row" style="margin-top: 12px;">
+                                <div class="col-md-12">
+                                    <!-- <div *ngIf="formularioAgregarDias.invalid">
+                                        <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                    </div> -->
+                                    <button type="submit" class="btn btn-primary" [disabled]="habilitarDehabilitarBotonForm2"
+                                         (click)="seleccionarDia({value: 0}, 3, [])"><i
+                                            class="feather icon-check-circle"></i>Guardar</button>
+                                    <!-- <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"><i class="feather icon-slash"></i>Eliminar</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Agendas disponibles</p>
+                        <hr />
+                    </div>
+                    
+                    <dx-data-grid class="grid" [dataSource]="DS" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        (onSelectionChanged)="onSelectionChanged($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <!-- <dxo-search-panel [visible]="true"></dxo-search-panel> -->
+                        <!-- <dxo-export [enabled]="true"></dxo-export> -->
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="vr_idagen" caption="Codigo" width="150"></dxi-column>
+                        <!-- columnAutoWidth -->
+                        <dxi-column dataField="vr_nom_agen" caption="Agenda" width="200"
+                            [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="vr_nom_med" caption="Profesional" width="columnAutoWidth"></dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>

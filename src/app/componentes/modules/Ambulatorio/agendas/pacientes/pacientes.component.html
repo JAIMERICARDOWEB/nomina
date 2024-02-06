@@ -1,0 +1,340 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Creación de pacientes">
+            <form [formGroup]="formulario">
+                <form [formGroup]="formBusqueda" (ngSubmit)="bus_paciente()">
+                    <div class="row row_container">
+                        <div class="mb-3 col-md-3">
+                            <label>Identificación:</label>
+                            <div class="d-flex">
+                                <!-- (blur)="bus_paciente()" -->
+                                <input type="text" #autofocus (keypress)="soloNumeros($event, 20)" class="form-control inputBusqueda campos_form" formControlName="id_pacien1" minlength="5" maxlength="20" [ngClass]="{'is-invalid': id_pacien1.invalid && (id_pacien1.dirty || id_pacien1.touched || saltarAlertas),
+                                'is-valid': id_pacien1.valid && (id_pacien1.dirty || id_pacien1.touched ||   saltarAlertas)}"/>
+                                <span class="input-group-text lupa campos_form" id="basic-addon2" (click)="bus_paciente()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                                <!-- <button (click)="bus_paciente()" style="display: none;"></button> -->
+                                <input type="submit" value="" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label for="SelectImpresion">Tipo:</label>
+                            <select class="form-select campos_form"  aria-label="select example" formControlName="tipo_id_pacien1" maxlength="" [ngClass]="{'is-invalid': tipo_id_pacien1.invalid && (tipo_id_pacien1.dirty || tipo_id_pacien1.touched || saltarAlertas),
+                            'is-valid': tipo_id_pacien1.valid && (tipo_id_pacien1.dirty || tipo_id_pacien1.touched ||   saltarAlertas)}">
+                                <option value="" hidden>Seleccione una opción</option>
+                                <option *ngFor="let element of consultas.tipo" value="{{element.ttipoidpacien1}}">{{element.descripcion1}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label>Primer Nombre:</label>
+                                <input type="text" (keypress)="soloLetras($event)" class="form-control form-control-sm campos_form" formControlName="nom11"  maxlength="20" [ngClass]="{'is-invalid': nom11.invalid && (nom11.dirty || nom11.touched || saltarAlertas),
+                                'is-valid': nom11.valid && (nom11.dirty || nom11.touched ||   saltarAlertas)}"/>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="SelectImpresion">Segundo Nombre:</label>
+                                <input type="text" (keypress)="soloLetras($event)" class="form-control form-control-sm campos_form" formControlName="nom21"  maxlength="20" [ngClass]="{'is-invalid': nom21.invalid && (nom21.dirty || nom21.touched || saltarAlertas),
+                                'is-valid': nom21.valid && (nom21.dirty || nom21.touched ||   saltarAlertas)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label>Primer Apellido:</label>
+                                <input type="text" (keypress)="soloLetras($event)" class="form-control form-control-sm campos_form" formControlName="apell21"  maxlength="30" [ngClass]="{'is-invalid': apell21.invalid && (apell21.dirty || apell21.touched || saltarAlertas),
+                                'is-valid': apell21.valid && (apell21.dirty || apell21.touched ||   saltarAlertas)}"/>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label for="SelectImpresion">Segundo Apellido:</label>
+                                <input type="text" (keypress)="soloLetras($event)" class="form-control form-control-sm campos_form" formControlName="apell11"  maxlength="30" [ngClass]="{'is-invalid': apell11.invalid && (apell11.dirty || apell11.touched || saltarAlertas),
+                                'is-valid': apell11.valid && (apell11.dirty || apell11.touched ||   saltarAlertas)}"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Fecha de Nacimiento:</label>
+                                <dx-date-box 
+                                placeholder="MM/DD/AAAA" class="campos_form" formControlName="fecha_nac1" [showClearButton]="true" [useMaskBehavior]="true" type="date" [value]="" [inputAttr]="{ 'aria-label': 'Date' }" (valueChange)="onDateValueChanged($event)"
+                                [ngClass]="{ 'is-invalid-select': (formulario.get('fecha_nac1').hasError('invalidYear') && (formulario.get('fecha_nac1').dirty || formulario.get('fecha_nac1').touched || saltarAlertas)) || (formulario.get('fecha_nac1').hasError('required') && formulario.get('fecha_nac1').touched && saltarAlertas), 'is-valid-select': formulario.get('fecha_nac1').valid && (formulario.get('fecha_nac1').dirty || formulario.get('fecha_nac1').touched || saltarAlertas)}">
+                            </dx-date-box>
+                            <div class="invalid-feedback" *ngIf="(formulario.get('fecha_nac1').hasError('invalidYear') || (formulario.get('fecha_nac1').hasError('required') && formulario.get('fecha_nac1').touched)) && saltarAlertas">
+                                {{ formulario.get('fecha_nac1').hasError('invalidYear') ? 'El año debe ser mayor o igual a 1900.' : 'Este campo es obligatorio.' }}
+                            </div>
+
+
+                                <!-- <input type="date" formControlName="fecha_nac1"  class="form-control form-control-sm campos_form" maxlength="10" [ngClass]="{'is-invalid': fecha_nac1.invalid && (fecha_nac1.dirty || fecha_nac1.touched || saltarAlertas),
+                                'is-valid': fecha_nac1.valid && (fecha_nac1.dirty || fecha_nac1.touched ||   saltarAlertas)}">
+                                <div class="invalid-feedback" *ngIf="formulario.get('fecha_nac1').hasError('fechaInvalida')">
+                                    El año debe ser mayor o igual a 1900.
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Sexo:</label>
+                                <select class="form-select campos_form"  aria-label="select example" formControlName="sexo_pacien1" [ngClass]="{'is-invalid': sexo_pacien1.invalid && (sexo_pacien1.dirty || sexo_pacien1.touched || saltarAlertas), 'is-valid': sexo_pacien1.valid && (sexo_pacien1.dirty || sexo_pacien1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="I">Sin identificar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Información de contacto y ubicación</p>
+                        <hr />
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Dirección:</label>
+                                <input type="text" formControlName="dir_pacien1"  class="form-control campos_form" maxlength="50" [ngClass]="{'is-invalid': dir_pacien1.invalid && (dir_pacien1.dirty || dir_pacien1.touched || saltarAlertas),
+                                'is-valid': dir_pacien1.valid && (dir_pacien1.dirty || dir_pacien1.touched ||   saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label>Departamento:</label>
+                                <dx-select-box [dataSource]="depa" class="campos_form"  formControlName="coddpto1" valueExpr="coddepa1"
+                                    displayExpr="nomdepa1" [searchEnabled]="true" [searchExpr]="'nomdepa1'" (onValueChanged)="onValueChangedDepartamentos($event)" 
+                                    [ngClass]="{'is-invalid-select': coddpto1.invalid && (coddpto1.dirty || coddpto1.touched || saltarAlertas),'is-valid-select': coddpto1.valid && (coddpto1.dirty || coddpto1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label>Municipio:</label>
+                                <dx-select-box [dataSource]="muni" class="campos_form"  valueExpr="cod_muni1" formControlName="codmunicipio1" displayExpr="nombremunicipio" [searchEnabled]="true" [searchExpr]="'nombremunicipio'"
+                                [ngClass]="{'is-invalid-select': codmunicipio1.invalid && (codmunicipio1.dirty || codmunicipio1.touched || saltarAlertas), 'is-valid-select': codmunicipio1.valid && (codmunicipio1.dirty || codmunicipio1.touched ||   saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-3">
+                                <label>N° Celular:</label>
+                                <input type="text"  (keypress)="soloNumeros($event, 20)" formControlName="tel_pacien1" class="form-control campos_form" maxlength="30"
+                                [ngClass]="{'is-invalid': tel_pacien1.invalid && (tel_pacien1.dirty || tel_pacien1.touched || saltarAlertas),
+                                'is-valid': tel_pacien1.valid && (tel_pacien1.dirty || tel_pacien1.touched ||  saltarAlertas)}">
+                            </div>
+                            <div class="mb-3 col-md-3">
+                                <label>N° Whatsapp:</label>
+                                <input type="text"  (keypress)="soloNumeros($event, 20)" formControlName="celularwhatsapp1" class="form-control campos_form" maxlength="10"
+                                [ngClass]="{'is-invalid': celularwhatsapp1.invalid && (celularwhatsapp1.dirty || celularwhatsapp1.touched || saltarAlertas),
+                                'is-valid': celularwhatsapp1.valid && (celularwhatsapp1.dirty || celularwhatsapp1.touched ||  saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Persona Responsable:</label>
+                                <input type="text" (keypress)="soloLetras($event)" formControlName="nom_presp1"  class="form-control campos_form" maxlength="30"
+                                [ngClass]="{'is-invalid': nom_presp1.invalid && (nom_presp1.dirty || nom_presp1.touched || saltarAlertas),
+                                'is-valid': nom_presp1.valid && (nom_presp1.dirty || nom_presp1.touched ||   saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Teléfono Persona R:</label>
+                                <input type="text" formControlName="tel_presp1"  (keypress)="soloNumeros($event, 20)" class="form-control campos_form" maxlength="20"
+                                    [ngClass]="{'is-invalid': tel_presp1.invalid && (tel_presp1.dirty || tel_presp1.touched || saltarAlertas),
+                                'is-valid': tel_presp1.valid && (tel_presp1.dirty || tel_presp1.touched ||   saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Parentesco:</label>
+                                <select formControlName="par_presp1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': par_presp1.invalid && (par_presp1.dirty || par_presp1.touched || saltarAlertas),
+                                'is-valid': par_presp1.valid && (par_presp1.dirty || par_presp1.touched ||  saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="ABUELO(A)">ABUELO(A)</option>
+                                    <option value="HERMANO (A)">HERMANO (A)</option>
+                                    <option value="MADRE">MADRE</option>
+                                    <option value="NIETO (A)">NIETO (A)</option>
+                                    <option value="NUERA">NUERA</option>
+                                    <option value="PADRE">PADRE</option>
+                                    <option value="PRIMO (A)">PRIMO (A)</option>
+                                    <option value="SOBRINO (A)">SOBRINO (A)</option>
+                                    <option value="TIO (A)">TIO (A)</option>
+                                    <option value="YERNO">YERNO</option>
+                                    <option value="HIJO (A)">HIJO (A)</option>
+                                    <option value="ESPOSO (A)">ESPOSO (A)</option>
+                                    <option value="COMPAÑERO (A)">COMPAÑERO (A)</option>
+                                    <option value="NINGUNO">NINGUNO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Tipo Afiliación:</label>
+                                <select formControlName="tipo_afiliado1"  class="form-select campos_form" aria-label="select example"
+                                [ngClass]="{'is-invalid': tipo_afiliado1.invalid && (tipo_afiliado1.dirty || tipo_afiliado1.touched || saltarAlertas),
+                                'is-valid': tipo_afiliado1.valid && (tipo_afiliado1.dirty || tipo_afiliado1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="1">cotizante</option>
+                                    <option value="2">beneficiario</option>
+                                    <option value="3">adicional</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Zona:</label>
+                                <select formControlName="zona1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': zona1.invalid && (zona1.dirty || zona1.touched || saltarAlertas),
+                                            'is-valid': zona1.valid && (zona1.dirty || zona1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="U">U</option>
+                                    <option value="R">R</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Información adicional</p>
+                        <hr />
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Nivel:</label>
+                                <select formControlName="nivel1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': nivel1.invalid && (nivel1.dirty || nivel1.touched || saltarAlertas),
+                                            'is-valid': nivel1.valid && (nivel1.dirty || nivel1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+<!-- <<<<<<< HEAD
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Nivel:</label>
+                                <select formControlName="nivel1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': nivel1.invalid && (nivel1.dirty || nivel1.touched || saltarAlertas),
+                                            'is-valid': nivel1.valid && (nivel1.dirty || nivel1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+=======
+>>>>>>> 70057c8e80a123e5b254e5c2cc225e452aba095e -->
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Etnia:</label>
+                                <select formControlName="codetnia1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': codetnia1.invalid && (codetnia1.dirty || codetnia1.touched || saltarAlertas),
+                                    'is-valid': codetnia1.valid && (codetnia1.dirty || codetnia1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option *ngFor="let element of consultas.codet" value="{{element.codetnia1}}">
+                                        {{element.descripcion1}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Estado Civil:</label>
+                                <select formControlName="est_civil1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': est_civil1.invalid && (est_civil1.dirty || est_civil1.touched || saltarAlertas),
+                                    'is-valid': est_civil1.valid && (est_civil1.dirty || est_civil1.touched ||   saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option value="CASADO(A)">CASADO(A)</option>
+                                    <option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
+                                    <option value="SOLTERO(A)">SOLTERO(A)</option>
+                                    <option value="UNION LIBRE">UNION LIBRE</option>
+                                    <option value="VIUDO(A)">VIUDO(A)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Nivel Educativo:</label>
+                                <select formControlName="codnivedu1"  class="form-select campos_form" aria-label="select example"
+                                    [ngClass]="{'is-invalid': codnivedu1.invalid && (codnivedu1.dirty || codnivedu1.touched || saltarAlertas),
+                                        'is-valid': codnivedu1.valid && (codnivedu1.dirty || codnivedu1.touched ||  saltarAlertas)}">
+                                    <option value="" hidden>Seleccione una opción</option>
+                                    <option *ngFor="let element of consultas.esco" value="{{element.codnivel1}}"> {{element.descripcion1}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Ocupación:</label>
+                                <dx-select-box [dataSource]="ocup" class="campos_form"  formControlName="ocupacion1" valueExpr="codigo1"
+                                    displayExpr="nombre1" [searchEnabled]="true" [searchExpr]="'nombre1'"
+                                    [ngClass]="{'is-invalid-select': ocupacion1.invalid && (ocupacion1.dirty || ocupacion1.touched || saltarAlertas),
+                                    'is-valid-select': ocupacion1.valid && (ocupacion1.dirty || ocupacion1.touched ||   saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Código Entidades:</label>
+                                <dx-select-box [dataSource]="countries" class="campos_form"  formControlName="codentidad1"
+                                    valueExpr="vr_codentidad" displayExpr="vr_nom_ase" [searchEnabled]="true"
+                                    [searchExpr]="'vr_nom_ase'"
+                                    [ngClass]="{'is-invalid-select': codentidad1.invalid && (codentidad1.dirty || codentidad1.touched || saltarAlertas),
+                                    'is-valid-select': codentidad1.valid && (codentidad1.dirty || codentidad1.touched ||   saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Tipo de Sangre:</label>
+                                <input type="text" formControlName="tiposangre1"  class="form-control campos_form" maxlength="10"
+                                [ngClass]="{'is-invalid': tiposangre1.invalid && (tiposangre1.dirty || tiposangre1.touched || saltarAlertas),
+                                'is-valid': tiposangre1.valid && (tiposangre1.dirty || tiposangre1.touched ||   saltarAlertas)}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Correo:</label>
+                                <input type="text" formControlName="email1"   class="form-control campos_form" maxlength="100" 
+                                [ngClass]="{'is-invalid': email1.invalid && (email1.dirty || email1.touched || saltarAlertas),
+                                'is-valid': email1.valid && (email1.dirty || email1.touched || saltarAlertas)}">
+                                <div class="invalid-feedback">
+                                    Los datos del correo deben coincidir con el tipo email(example&#64;example.com)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>Estado:</label>
+                                <div style="align-items: center;" class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" #radioButton1 id="validationFormCheck2"
+                                            value="1" type="radio" formControlName="estado1" name="estado1"
+                                            [ngClass]="{'is-invalid': estado1.invalid && estado1.errors.pattern && (estado1.dirty || estado1.touched || saltarAlertas),
+                                        'is-valid': estado1.valid && (estado1.dirty || estado1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck2">Activo</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" #radioButton2 id="validationFormCheck3"
+                                            value="0" type="radio" formControlName="estado1" name="estado1"
+                                            [ngClass]="{'is-invalid': estado1.invalid && estado1.errors.pattern && (estado1.dirty || estado1.touched || saltarAlertas),
+                                        'is-valid': estado1.valid && (estado1.dirty || estado1.touched || saltarAlertas)}">
+                                        <label class="form-check-label" for="validationFormCheck3">Suspendido</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div *ngIf="formulario.invalid || formBusqueda.invalid">
+                        <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid && formBusqueda.invalid" (click)="BotonesOpciones(1)"><i class="feather icon-check-circle"></i>{{cambiarBoton}}</button>
+                    <button class="btn btn-light" (click)="BotonesOpciones(2)"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                    <!-- <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"><i class="feather icon-slash"></i>Eliminar</button> -->
+                </div>
+            </div>
+        </form>
+
+        </app-card>
+    </div>
+</div>

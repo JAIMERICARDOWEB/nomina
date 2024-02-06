@@ -1,0 +1,324 @@
+<div class="row container_general">
+    <div class="col-sm-12">
+        <app-card cardTitle="Tipos de consulta">
+            <div class="row">
+                <div class="col-md-6">
+                    <form [formGroup]="formulario" ><!-- (ngSubmit)="RealizarComprobacionModal()" -->
+                        <div class="row">
+                            <div>
+                                <div>Descripción:</div>
+                                <input type="text" formControlName="vr_descri1" placeholder="Ingrese la descripción" class="form-control campos_form" maxlength="100" 
+                                [ngClass]="{'is-invalid': vr_descri1.invalid && (vr_descri1.dirty || vr_descri1.touched || saltarAlertas), 'is-valid': vr_descri1.valid && (vr_descri1.dirty || vr_descri1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                                <div>Intervalo/Minutos:</div>
+                                <input type="text" inputmode="" pattern="[1-9][0-9]*" (keypress)="soloNumeros($event, 20)" formControlName="vr_intervalo1" placeholder="Ingrese la cantidad" class="form-control campos_form" maxlength="2"
+                                [ngClass]="{'is-invalid': vr_intervalo1.invalid && (vr_intervalo1.dirty || vr_intervalo1.touched || saltarAlertas), 'is-valid': vr_intervalo1.valid && (vr_intervalo1.dirty || vr_intervalo1.touched || saltarAlertas)}"> 
+                            </div>
+
+                            <div class="mb-3 col-md-3" style="align-items: center; text-align: center; margin: 0 auto;">
+                                <div>Color:</div>
+                                <input type="color" class="campos_form" id="exampleColorInput" formControlName="vr_color1" style="padding: 0; border: none;">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div>
+                                <div>Codigo del servicio:</div>
+                                <dx-select-box [dataSource]="cservicio" class="campos_form"  formControlName="vr_cod_con1" valueExpr="vr_cod" displayExpr="vr_nom_con" [searchEnabled]="true" [searchExpr]="'vr_nom_con'"
+                                [ngClass]="{'is-invalid-select': vr_cod_con1.invalid && (vr_cod_con1.dirty || vr_cod_con1.touched || saltarAlertas),   'is-valid-select': vr_cod_con1.valid && (vr_cod_con1.dirty || vr_cod_con1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div>
+                                <div>Tipo de consulta según resolución 256:</div>
+                                <dx-select-box [dataSource]="tipoconsulta" class="campos_form"  formControlName="vr_tipocita1" valueExpr="id_consulta" displayExpr="nombre_consulta" [searchEnabled]="true" [searchExpr]="'nombre_consulta'"
+                                [ngClass]="{'is-invalid-select': vr_tipocita1.invalid && (vr_tipocita1.dirty || vr_tipocita1.touched || saltarAlertas),
+                                    'is-valid-select': vr_tipocita1.valid && (vr_tipocita1.dirty || vr_tipocita1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Historia clinica relacionada:</div>
+                                <dx-select-box [dataSource]="hchistoria" class="campos_form"  formControlName="vr_cod_his1" valueExpr="vr_cod_hd" displayExpr="vr_nombre_hd" [searchEnabled]="true" [searchExpr]="'vr_nombre_hd'"
+                                [ngClass]="{'is-invalid-select': vr_cod_his1.invalid && (vr_cod_his1.dirty || vr_cod_his1.touched || saltarAlertas),
+                                'is-valid-select': vr_cod_his1.valid && (vr_cod_his1.dirty || vr_cod_his1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Rango de edad, frecuencia y sexo</p>
+                        <hr />
+
+                        <div class="row row_container">
+                            <div class="mb-3 col-md-6">
+                              <div>Desde:</div>
+                              <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="vr_edad_desde1" maxlength="2" class="form-control campos_form"
+                                [ngClass]="{'is-invalid': vr_edad_desde1.invalid && (vr_edad_desde1.dirty || vr_edad_desde1.touched || saltarAlertas),
+                                  'is-valid': vr_edad_desde1.valid && (vr_edad_desde1.dirty || vr_edad_desde1.touched || saltarAlertas)}">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                              <div>Hasta:</div>
+                              <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="vr_edad_hasta1" maxlength="3" class="form-control campos_form"
+                                [ngClass]="{'is-invalid': vr_edad_hasta1.invalid && (vr_edad_hasta1.dirty || vr_edad_hasta1.touched || saltarAlertas),
+                                  'is-valid': vr_edad_hasta1.valid && (vr_edad_hasta1.dirty || vr_edad_hasta1.touched || saltarAlertas)}"
+                                (keyup)="validarRangoEdades()">
+                              <div *ngIf="formulario.get('vr_edad_hasta1')?.hasError('invalidRange')" class="invalid-feedback">
+                                La edad debe ser superior a 'Desde'.
+                              </div>
+                            </div>
+                          </div>
+
+                        <div class="row">
+                            <div>
+                                <div>Frecuencia:</div>
+                                <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="vr_frecuencia1" maxlength="5" class="form-control campos_form"
+                                [ngClass]="{'is-invalid': vr_frecuencia1.invalid && (vr_frecuencia1.dirty || vr_frecuencia1.touched || saltarAlertas),
+                                'is-valid': vr_frecuencia1.valid && (vr_frecuencia1.dirty || vr_frecuencia1.touched || saltarAlertas)}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div >
+                                <div>sexo:</div>
+                                <dx-select-box [dataSource]="sexoconsulta" class="campos_form"  formControlName="vr_sexo1" valueExpr="id_sexo" displayExpr="tipo_sexo" [searchEnabled]="true" [searchExpr]="'tipo_sexo'" 
+                                [ngClass]="{'is-invalid-select': vr_sexo1.invalid && (vr_sexo1.dirty || vr_sexo1.touched || saltarAlertas), 'is-valid-select': vr_sexo1.valid && (vr_sexo1.dirty || vr_sexo1.touched || saltarAlertas)}">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Sedes habilitadas para utilizar este tipo de cita</p>
+                        <hr />
+                        <div class="row">
+                            <div>
+                                <div>Sedes:</div>
+                                <dx-select-box (onValueChanged)="sedeCentroCostoSeleccionada($event, 1)" formControlName="vr_sede1" [dataSource]="sede" class="campos_form"  valueExpr="id1" displayExpr="nombre1" [searchEnabled]="true" [searchExpr]="'nombre1'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <div>Centro de costo:</div>
+                                <dx-select-box (onValueChanged)="sedeCentroCostoSeleccionada($event, 2)" formControlName="vr_cod_ubi1" [dataSource]="centrocosto" class="campos_form"  valueExpr="vr_cod_ubi" displayExpr="vr_nom_ubi" [searchEnabled]="true" [searchExpr]="'vr_nom_ubi'">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px;">
+                            <dx-data-grid class="grid" [dataSource]="dataTableSedesCentroCosto" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                            [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                            >
+                            <dxo-paging [enabled]="true"></dxo-paging>
+                            <dxo-editing
+                              mode="row"
+                              [allowDeleting]="true"
+                            >
+                            </dxo-editing>
+                            <dxi-column dataField="vr_sede1" caption="Sede" width="200"></dxi-column> <!-- columnAutoWidth -->
+                            <dxi-column dataField="vr_cod_ubi1" caption="Centro de costo" width="columnAutoWidth" [allowEditing]="false"></dxi-column>
+                            </dx-data-grid>
+                            <div style="color: #dc3545 !important;" [ngClass]="{'displaynone': !sedesSeleccionadaVacia}">
+                                Debe agregar minimo una sede y su centro de costo*
+                            </div>
+                        </div>
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Clasificar por especialidades</p>
+                        <hr />
+                        <div class="row">
+                            <div>
+                                <div>Especialidades:</div>
+                                <dx-select-box [dataSource]="data" (onValueChanged)="Especialidaseleccionada($event)" formControlName="vr_espe1" class="campos_form"  valueExpr="cod_espe1" displayExpr="nom_espe1" [searchEnabled]="true" [searchExpr]="'nom_espe1'">
+                                    <!-- [ngClass]="{'is-invalid-select': vr_cod_con1.invalid && (vr_cod_con1.dirty || vr_cod_con1.touched || saltarAlertas),   'is-valid-select': vr_cod_con1.valid && (vr_cod_con1.dirty || vr_cod_con1.touched || saltarAlertas)}" -->
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div>
+                                <dx-data-grid class="grid" [dataSource]="Especialidadseleccionada" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                                    [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }">
+                                    <dxo-editing
+                                      mode="row"
+                                      [allowDeleting]="true"
+                                    >
+                                    </dxo-editing>
+                                    <dxi-column dataField="cod_espe1" caption="Cod" width="100"></dxi-column> <!-- columnAutoWidth -->
+                                    <dxi-column dataField="nom_espe1" caption="Especialidad" width="columnAutoWidth" [allowEditing]="false"></dxi-column>
+                                </dx-data-grid>
+                            </div>
+                            <div style="color: #dc3545 !important;" [ngClass]="{'displaynone': !especialidadSeleccionadaVacia}">
+                                Debe agregar por lo menos una especialidad*
+                            </div>
+                        </div>
+                        <p style="margin-top: 30px; margin-bottom: -10px; color: black;">Parametriza cantidades</p>
+                        <hr />
+                        <div class="row">
+                            <div>
+                                <div>Contrato:</div>
+                                <dx-select-box (onValueChanged)="agregarContratoCantidad($event, 1)" formControlName="vr_cod_contra" [dataSource]="contratos" class="campos_form"  valueExpr="vr_cod_contra" displayExpr="vr_nom_contra" [searchEnabled]="true" [searchExpr]="'vr_nom_contra'">
+                                    <!-- [ngClass]="{'is-invalid-select': vr_cod_con1.invalid && (vr_cod_con1.dirty || vr_cod_con1.touched || saltarAlertas),   'is-valid-select': vr_cod_con1.valid && (vr_cod_con1.dirty || vr_cod_con1.touched || saltarAlertas)}" -->
+                                </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="row row_container">
+                            <!-- <div class="mb-3 col-md-8">
+                                <div>Cantidad por día:</div>
+                                <input type="text" class="form-control campos_form" maxlength="200">
+                            </div>
+                            <div class="mb-3 col-md-4">
+                                <button>Agregar</button>
+                            </div> -->
+                            <div class="mb-3 col-md-12">
+                                <label>Cantidad por día:</label>
+                                <div class="d-flex">
+                                    <!-- (blur)="bus_paciente()" (keypress)="soloNumeros($event, 20)" (click)="bus_paciente()" -->
+                                    <input type="text" (keypress)="soloNumeros($event, 20)" formControlName="vr_cant" class="form-control inputBusqueda campos_form" maxlength="5">
+                                    <span class="input-group-text lupa campos_form" id="basic-addon2" 
+                                    (click)="agregarContratoCantidad(null, 2)"><i class="feather icon-plus-circle"></i></span>
+                                    <button (click)="agregarContratoCantidad(null, 2)" style="display: none;"></button>
+                                    <!-- <input type="submit" value="" style="display: none;"> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px;">
+                            <dx-data-grid class="grid" [dataSource]="ContratoCantDataSource" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                            [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                            >
+                            <dxo-paging [enabled]="true"></dxo-paging>
+                            <dxo-editing
+                              mode="row"
+                              [allowDeleting]="true">
+                            </dxo-editing>
+                            <dxi-column dataField="vr_cod_contra" caption="Cod" width="50"></dxi-column> <!-- columnAutoWidth -->
+                            <dxi-column dataField="vr_nom_contra" caption="Contrato" width="columnAutoWidth" [allowEditing]="false"></dxi-column>
+                            <dxi-column dataField="vr_cant" caption="Cantidad" width="100"></dxi-column> <!-- columnAutoWidth -->
+                            </dx-data-grid>
+                            <div style="color: #dc3545 !important;" [ngClass]="{'displaynone': !ContratosSeleccionadosVacio}">
+                                Debe agregar minimo un contrato y la cantidad por día*
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="formulario.invalid">
+                                    <p style="font-size: 12px; color: red;">Aun quedan campos por rellenar!</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="BotonesOpciones(1)"><i class="feather icon-check-circle"></i>{{cambiarBoton}}</button>
+                                <button class="btn btn-light" (click)="BotonesOpciones(2)"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                                <!-- <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid"><i class="feather icon-slash"></i>Eliminar</button> -->
+                            </div>
+                        </div>
+                        <!-- <div class="button__con">
+                            <button type="submit" class="btn btn-primary" (click)="ConfirmarGuardado()" style="display: flex; margin: auto; margin-top: 10px; margin-bottom: 10px;" id="boton">Guardar</button>
+                        </div> -->
+                    </form>
+                </div>
+                <!--* Aquí comienzan los tabs  -->
+                <div class="col-md-6">
+                    <dx-data-grid class="grid" [dataSource]="tiposdeconsultaDataSource" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        (onSelectionChanged)="onSelectionChangedddd($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="vr_tipo_con" caption="Código" width="60" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="vr_descri" caption="Descripción" width="columnAutoWidth"></dxi-column>
+                        
+
+                    </dx-data-grid>
+                </div>
+            </div>
+        </app-card>
+    </div>
+</div>
+<!-- <div class="head_tr">
+                    <h2>Formulario Habilitar sedes</h2>
+                    <p>Complete este formulario e ingrese los datos que son requeridos.</p>
+                    <hr>
+                </div>
+                <div class="subMenu">
+                    <form [formGroup]="formulario2" (ngSubmit)="onSubmits()">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <div>Tipo de Consulta:</div>
+                                <select class="tipo2" formControlName="vr_tipo_con1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm">
+                                    <option value="" disabled>Seleccione una Opción</option>
+                                    <option *ngFor="let element of consulta" value="{{element.vr_tipo_con}}">
+                                        {{element.vr_descri}}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    El tipo de correo es requerido*
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <div>Centro de Costo:</div>
+                                <select class="tipo2" formControlName="vr_cod_ubi1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm">
+                                    <option value="" disabled>Seleccione una Opción</option>
+                                    <option *ngFor="let element of centrocosto" value="{{element.vr_cod_ubi}}">
+                                        {{element.vr_nom_ubi}}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    El tipo de correo es requerido*
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <div>Sede:</div>
+                                <select class="tipo2" formControlName="vr_sede1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm">
+                                    <option value="" disabled>Seleccione una Opción</option>
+                                    <option *ngFor="let element of sede" value="{{element.id1}}">{{element.nombre1}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    El tipo de correo es requerido*
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button__con">
+                            <button type="submit" class="btn btn-primary"
+                                style="display: flex; margin: auto; margin-top: 10px; margin-bottom: 10px;"
+                                id="boton">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="head_tr">
+                    <h2>Formulario Clasificar por especialidades</h2>
+                    <p>Complete este formulario e ingrese los datos que son requeridos.</p>
+                    <hr>
+                </div>
+                <div class="subMenu">
+                    <form [formGroup]="formulari2" (ngSubmit)="onSubts()">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <div>Codigo:</div>
+                                <input type="text" formControlName="vr_tipo_con1" placeholder="Ingrese el codigo"
+                                    style="text-transform:uppercase" class="form-control form-control-sm"
+                                    maxlength="200">
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <div>Especialidades:</div>
+                                <!-- <ng-multiselect-dropdown formControlName="vr_espe1" style="text-transform:uppercase"
+                                    class="form-control form-control-sm" [placeholder]="'SELECCIONE LAS ESPECIALIDADES'"
+                                    [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
+                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                </ng-multiselect-dropdown> --
+                            </div>
+                        </div>
+
+                        <div class="button__con">
+                            <button type="submit" class="btn btn-primary"
+                                style="display: flex; margin: auto; margin-top: 10px; margin-bottom: 10px;"
+                                id="boton">Guardar</button>
+                        </div>
+                    </form> -->

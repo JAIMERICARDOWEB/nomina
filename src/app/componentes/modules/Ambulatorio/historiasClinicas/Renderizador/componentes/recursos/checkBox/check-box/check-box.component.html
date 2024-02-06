@@ -1,0 +1,10 @@
+<form [formGroup]="formularioHistorias" (ngSubmit)="submit()">
+<div class="paneles my-2">
+    <div class="label__con">
+        <label for="">{{data.vr_etiqueta_dhd}}</label>
+    </div>
+    <div class="input__con">
+        <input type="checkbox" placeholder="{{data.vr_etiqueta_repor_dhd}}" formControlName="{{data.vr_name_dhd}}" value="{{data.vr_valorini_dhd}}" class="input_medianos">
+    </div>
+</div>
+</form>

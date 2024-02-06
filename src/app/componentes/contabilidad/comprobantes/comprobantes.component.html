@@ -1,0 +1,66 @@
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+    <div class="col-sm-12">
+        <app-card cardTitle="Comprobantes Contables">
+
+
+            <div class="row">
+                <div class="col-md-5">
+                    <form class="was-validated" [formGroup]="formulario">
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Código</label>
+                            <input type="text" class="form-control" formControlName="id"
+                                style="height: 35px; width: 170px;" placeholder="Cuenta" maxlength="10" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Descripción</label>
+                            <input type="text" class="form-control" formControlName="descripcion" style="height: 35px;"
+                                placeholder="Descripción" maxlength="500" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label for="SelectImpresion">Tipo Impresión</label>
+                            <select class="form-select" aria-label="select example" formControlName="impresion" maxlength="10" required>
+                                <option value="NC">NC</option>
+                                <option value="RC">RC</option>
+                                <option value="CE">CE</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label for="SelectCierre">Tipo Cierre</label>
+                            <select class="form-select" aria-label="select example" formControlName="cierre" maxlength="50" required>
+                                <option value="N/A">N/A</option>
+                                <option value="Resultado">Resultado</option>
+                                <option value="Tributario">Tributario</option>
+                            </select>
+                        </div>                    
+
+                        <div *ngIf="formulario.invalid">
+                            <p style="font-size: 12px; color: red;">Corrija los campos en rojo!</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="insert()"><i class="feather icon-thumbs-up"></i>Guardar</button>
+                        <button type="submit" class="btn btn-danger" [disabled]="formulario.invalid" (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button>
+                    </form>
+                </div>
+
+                <div class="col-md-7">
+                    <dx-data-grid class="grid" [dataSource]="DS" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                        [showColumnLines]="true" [showBorders]="true" [selection]="{ mode: 'single' }"
+                        (onSelectionChanged)="onSelectionChanged($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-export [enabled]="true"></dxo-export>
+                        <dxo-paging [enabled]="true"></dxo-paging>
+
+                        <dxi-column dataField="id" caption="Código" width="120" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descripción" width="columnAutoWidth"></dxi-column>
+                        <dxi-column dataField="impresion" caption="Impresión" width="120"></dxi-column>
+                        <dxi-column dataField="cierre" caption="Tipo Cierre" width="120"></dxi-column>
+
+                    </dx-data-grid>
+                </div>
+
+            </div>
+
+        </app-card>
+    </div>
+</div>

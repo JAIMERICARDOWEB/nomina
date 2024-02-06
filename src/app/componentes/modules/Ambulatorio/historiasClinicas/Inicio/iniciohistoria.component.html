@@ -1,0 +1,21 @@
+<app-renderizador-principal></app-renderizador-principal>
+<div class="contenedor_principal">
+    <dx-select-box
+        [dataSource]="dropdownList"
+        displayExpr="vr_nom_diag"
+        valueExpr="vr_cod_diag"
+        [inputAttr]="{'aria-label': 'vr_nom_diag'}"
+        [searchMode]="'contains'"
+        [searchExpr]="'vr_nom_diag'"
+        [minSearchLength]="1"
+        [searchEnabled]="true"
+        [showDataBeforeSearch]="true"
+        (onValueChanged)="onItemSelect($event)"
+    ></dx-select-box>
+    <!-- <ng-multiselect-dropdown
+    [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)">
+    </ng-multiselect-dropdown> -->
+</div>
+<div class="relleno"></div>

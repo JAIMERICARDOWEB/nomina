@@ -1,0 +1,113 @@
+<div class="container_general_citas_medicas">
+    <div class="container_lateral_derecho" *ngIf="showMedico">
+      <div>
+        <button class="buton-cerrar" (click)="cerrarTodo()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+        </svg></button>
+        <div class="contenedor_agendas d-flex"  style="justify-content: center;">
+          <div >
+            <h5>{{this.dataSheduler[0].data.filaSeleccionada.Full_Name}}</h5>
+          </div>
+          <div style="width: 10%; margin-left: 10px;">
+            <dx-select-box [items]="cellDurations" [(value)]="cellDuration"
+            (valueChanged)="onCellDurationChange($event)"></dx-select-box>
+          </div>
+          <div>
+            <nav>
+              <ul class="menu-horizontal">
+                <li>
+                  <p id="menu-trigger">Días disponibles</p>
+                  <ul class="menu-vertical">
+                    <li>
+                      <p style="white-space: pre-line">
+                        <ng-container *ngFor="let dia of resultadoMostrado">
+                          {{ dia }}
+                          <br>
+                          <br>
+                        </ng-container>
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scheduler" style="min-width: 400px; " *ngIf="showCalendario">
+      <dx-scheduler [min]="minDate" timeZone="America/Bogota" [cellDuration]="cellDuration" [showAllDayPanel]="allDayPanelVisible"
+        [editing]="opcionesScheduler.editing" [dataSource]="dataSource" [remoteFiltering]="true" [views]="['day']"
+        currentView="day" [currentDate]="now" [startDayHour]="6" [endDayHour]="20" [height]="800"
+        startDateExpr="StartDate" endDateExpr="EndDate" allDayExpr="AllDay" recurrenceRuleExpr="RecurrenceRule"
+        recurrenceExceptionExpr="RecurrenceException" (onCellClick)="onCellClick($event)"
+        (onAppointmentDblClick)="onAppointmentDblClick($event)"
+        (onAppointmentFormOpening)="onAppointmentFormOpening($event)" dataCellTemplate="dataCellTemplate"
+        dateCellTemplate="dateCellTemplate" timeCellTemplate="timeCellTemplate" resourceCellTemplate="resourceCellTemplate"
+        (onAppointmentAdding)="onAppointmentAdding($event)" (onAppointmentUpdating)="onAppointmentUpdating($event)"
+        (onOptionChanged)="onOptionChanged($event)">
+      
+        <div *dxTemplate="let dataCell of 'dataCellTemplate'"
+          [ngClass]="{ 'disable-date': isDisableDate(dataCell.startDate), 
+          holiday: !isDisableDate(dataCell.startDate) && isHoliday(dataCell.startDate), 'dx-scheduler-date-table-cell-text': isMonthView() }">
+          {{ isMonthView() ? dataCell.startDate.getDate() : "" }}
+        </div>
+      
+  
+        <div *dxTemplate="let timeCell of 'timeCellTemplate'" [ngClass]="{ 'disable-date-color': isHoliday(timeCell.date) }">
+          {{ timeCell.text }}
+          <div *ngIf="hasCoffeeCupIcon(timeCell.date)" class="cafe"></div>
+        </div>
+  
+        <div *dxTemplate="let dateCell of 'dateCellTemplate'"
+          [ngClass]="{ 'disable-date': isDisabledDateCell(dateCell.date) }">
+          {{ dateCell.text }}
+        </div>
+      </dx-scheduler>
+    </div>
+  
+  
+    <div *ngIf="showForm" class="overlay">
+      <!-- Aquí puedes agregar tu formulario o contenido personalizado -->
+      <div class="conForm">
+        <div class="salir"><button (click)="salirOpciones(1)"><i class="feather icon-x"></i></button></div>
+        <div class="centrarContenido">
+          <div class="botones">
+            <button class="btn btn-success" (click)="clickAsignarCitasShow()"><i
+                class="feather icon-check-circle"></i>Asignar cíta</button>
+            <!-- <button class="btn btn-info" ><i class="feather icon-alert-octagon"></i>Asignar cíta prioritaria</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showFormAsignarCitas" class="overlay">
+      <!-- Aquí puedes agregar tu formulario o contenido personalizado -->
+      <div class="conAsignarCita">
+        <div class="salir"><button (click)="salirOpciones(2)"><i class="feather icon-x"></i></button></div>
+        <div class="centrarContenido">
+          <app-asignarcitas></app-asignarcitas>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showForm2" class="overlay">
+      <!-- Aquí puedes agregar tu formulario o contenido personalizado -->
+      <div class="conForm">
+        <div class="salir"><button (click)="salirOpciones(3)"><i class="feather icon-x"></i></button></div>
+        <div class="centrarContenido">
+          <div class="botones">
+            <!-- <button class="btn btn-success" (click)="clickAsignarCitasShow()" ><i class="feather icon-check-circle"></i>Asignar cíta</button> -->
+            <button class="btn btn-info"><i class="feather icon-alert-octagon"></i>Asignar cíta prioritaria</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showFormAsignarCitas" class="overlay">
+      <!-- Aquí puedes agregar tu formulario o contenido personalizado -->
+      <div class="conAsignarCita">
+        <div class="salir"><button (click)="salirOpciones(2)"><i class="feather icon-x"></i></button></div>
+        <div class="centrarContenido">
+          <app-asignarcitas></app-asignarcitas>
+        </div>
+      </div>
+    </div>
+  </div>

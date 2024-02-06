@@ -1,0 +1,29 @@
+
+.auto_complete_con{
+  display: flex;
+}
+.load{
+  border: 5px solid #ccc;
+  border-top-color: rgb(0, 195, 255);
+  border-top-style: groove;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  margin: 5px;
+
+  -webkit-animation: girar 1.5s linear infinite;
+  -o-animation: girar 1.5s linear infinite;
+  animation: girar 1.5s linear infinite;
+
+  display: none;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.relleno{
+  width: 100%;
+  height: 600px;
+}

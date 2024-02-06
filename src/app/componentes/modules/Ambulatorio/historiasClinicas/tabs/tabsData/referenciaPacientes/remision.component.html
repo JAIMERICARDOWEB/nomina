@@ -1,0 +1,73 @@
+<div class="container__principal">
+  <div class="card__container">
+      <div class="container__encabezado">
+          <div class="encabezado">
+              <div class="titulo">
+                  <h1>Referencia de pacientes </h1>
+                  <div class="sello">In testing</div>
+              </div>
+              <div class="linea">
+                  <hr>
+              </div>
+          </div>
+      </div>
+      <div class="container__formulario">
+          <div class="form__con">
+              <form > <!--  ! [formGroup]="contactForm" (ngSubmit)="RealizarComprobacion()" -->
+                  <div class="paneles">
+                      <div class="label__con">
+                          <label for="">Servicio que solicita la referencia:</label>
+                      </div>
+                      <div class="input__con">
+                          <input type="number" class="input_grandes" maxlength="255">
+                      </div>
+                  </div>
+                  <div class="paneles">
+                      <div class="label__con">
+                          <label for="">Especialidad que solicita la referencia</label>
+                      </div>
+                      <div class="input__con">
+                          <input type="datetime-local" class="input_medianos" maxlength="255">
+                      </div>
+                  </div>
+                  <div class="paneles">
+                      <div class="label__con">
+                          <label for="">Servicio para el cual se solicita la referencia:</label>
+                      </div>
+                      <div class="input__con">
+                          <input type="number" class="input_medianos" maxlength="100">
+                      </div>
+                  </div>
+                  <div class="paneles">
+                      <div class="label__con">
+                          <label for="">Especialidad para la cual se solicita la referencia:</label>
+                      </div>
+                      <div class="input__con">
+                          <input type="date" class="input_pequeños" maxlength="12">
+                      </div>
+                  </div>
+                  <div class="paneles">
+                      <div class="label__con">
+                          <label for="">Fecha final</label>
+                      </div>
+                      <div class="input__con">
+                          <input type="text" formControlName="email1" placeholder="Correo electronico" class="input_grandes">
+                      </div>
+                  </div>
+                  <div class="paneles">
+                      <div class="label__con">
+                          <label for="">Observación</label>
+                      </div>
+                      <div class="input__con">
+                         <textarea name="" id="" ></textarea>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,80 @@
+<div class="row container_general">
+  <div class="col-sm-12">
+    <app-card cardTitle="Sala de espera">
+      <div class="row">
+        <div class="col-md-10">
+          <form [formGroup]="contactForm" (ngSubmit)="traerPacientes()" class="conFrom">
+
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <div>Fecha:</div>
+                <input type="date" formControlName="id" class="form-control campos_form" [ngClass]="{'is-invalid': id.invalid && (id.dirty || id.touched || saltarAlertas),
+                'is-valid': id.valid && (id.dirty || id.touched ||   saltarAlertas)}">
+                <!-- <dx-date-box
+                  type="date"
+                  [value]="now"
+                  [inputAttr]="{ 'aria-label': 'Date' }"
+                > 
+                </dx-date-box> -->
+              </div>
+
+
+              <div class="mb-3 col-md-6">
+                <div>Profesional:</div>
+                <dx-select-box [dataSource]="countries" displayExpr="nom_med1" valueExpr="codigo1"
+                  [inputAttr]="{'aria-label': 'nom_med1'}" [searchMode]="searchModeOption"
+                  [searchExpr]="searchExprOption" [searchTimeout]="searchTimeoutOption"
+                  [minSearchLength]="minSearchLengthOption" [searchEnabled]="true"
+                  [showDataBeforeSearch]="showDataBeforeSearchOption" (onValueChanged)="onValueChanged($event)"
+                  class="Selector campos_form"
+                  formControlName="idprofesional"
+                  [ngClass]="{'is-invalid-select': idprofesional.invalid && (idprofesional.dirty || idprofesional.touched || saltarAlertas), 'is-valid-select': idprofesional.valid && (idprofesional.dirty || idprofesional.touched ||   saltarAlertas)}"
+                  ></dx-select-box>
+                <!-- <div class="invalid-feedback">
+                                    El Campo Código Entidades es requerido*
+                                </div> -->
+              </div>
+
+            </div>
+            <div class="button__con">
+              <button type="submit" class="btn btn-primary" id="boton">{{nombreBoton}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<div class="tarjetaTabla">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">HORA CITA</th>
+        <th scope="col">NOMBRE DEL PACIENTE</th>
+        <th scope="col">ENTIDAD ASEGURADORA</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">GENERAR HISTORIA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of dataSource; let index" [ngClass]="{
+              'table-light': paciente.estado1 == '0',
+              'table-warning': paciente.estado1 == '1',
+              'table-success': paciente.estado1 == '2',
+              'table-danger': paciente.estado1 == '3'
+            }">
+        <td>{{paciente.hora_cita1}}</td>
+        <td>{{paciente.paciente1}}</td>
+        <td>{{paciente.servicio1}}</td>
+        <td [ngClass]="{
+                'content-blanco': paciente.estado1 == '0',
+                'content-amarillo': paciente.estado1 == '1',
+                'content-verde': paciente.estado1 == '2',
+                'content-rojo': paciente.estado1 == '3'
+              }"></td>
+        <td><i class="angle__"
+            (click)="datosHistoriaAdicionales(paciente.vr_codhistoria, paciente.cod_admi1)" [routerLink]="['/historiaclinica']"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></i></td>
+      </tr> 
+    </tbody>
+  </table>
+</div>

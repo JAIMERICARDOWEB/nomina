@@ -1,0 +1,13 @@
+<form [formGroup]="formularioHistorias" (ngSubmit)="submit()">
+<div class="flex-container align-items-center d-flex my-2">
+    <div class="label">
+        <label for="">{{data.vr_etiqueta_dhd}}</label>
+    </div>
+    <div class="col-sm-10">
+        <select formControlName="{{data.vr_name_dhd}}" aria-label=".form-select-sm example" class="form-control form-control-sm">
+            <option value="" hidden>Selecione una opcion</option>
+            <option value="{{element.value}}" *ngFor="let element of datosSelector">{{element.display}}</option>
+        </select>
+    </div>
+</div>
+</form>
