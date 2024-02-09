@@ -89,7 +89,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.tab = { tabName: 'Inicio', selector: this.tabs.length === 0 ? this.dashboardcomponent : this.dashboardcomponent };
+    /*this.tab = { tabName: 'Inicio', selector: this.tabs.length === 0 ? this.dashboardcomponent : this.dashboardcomponent };
     this.tabs.push(this.tab)
 
     //Recibe la información de la ventana a cargar
@@ -102,7 +102,7 @@ export class InicioComponent implements OnInit {
       if (this.pulsoTab == false) {
         this.addTab(true, this.ventana, '')
       };
-    })
+    })*/
 
   }
 

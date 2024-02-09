@@ -30,7 +30,13 @@ const routes: Routes = [
         path: 'inicio',
         component: InicioComponent,
       },
-      
+      {
+        path: 'nomina',
+        loadChildren: () =>
+          import('./componentes/nomina/cargos/cargos.module').then(
+            (m) => m.CargosModule
+          ),
+      },
       {
         path: 'basic',
         loadChildren: () =>

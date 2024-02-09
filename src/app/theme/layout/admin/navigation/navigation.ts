@@ -77,8 +77,9 @@ const NavigationItems = [
             id: 'cargos',
             title: 'Cargos',
             type: 'item',
-            url: '/',
-            
+            url: '/nomina/cargos/list',
+            classes: 'nav-item',
+            icon: 'feather icon-server',
           },
           
         ],
