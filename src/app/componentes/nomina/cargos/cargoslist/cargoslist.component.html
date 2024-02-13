@@ -1,1 +1,32 @@
-<p>cargoslist works!</p>
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+    <div class="col-sm-12">
+        <app-card cardTitle="Cargos">
+            <div class="row">
+                <div class="col-md-12">
+                    <dx-data-grid class="grid" 
+                     [dataSource]="cargosList"
+                     height="300" 
+                     [allowColumnResizing]="true" 
+                     [columnAutoWidth]="true"
+                     [showColumnLines]="true" 
+                     [showBorders]="true" 
+                     [selection]="{ mode: 'single' }"
+                     
+                     >
+                    <dxo-filter-row [visible]="true"/>
+                    <dxo-search-panel [visible]="true"/>
+                    <dxo-export [enabled]="true"/>
+                    <dxo-paging [enabled]="true"/>
+                    <dxo-scrolling mode="standard"/>
+
+                        <dxi-column dataField="id" caption="Código" width="120" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="descripcion" caption="Descripción" width="columnAutoWidth"></dxi-column>
+
+                    </dx-data-grid>
+                </div>
+
+            </div>
+
+        </app-card>
+    </div>
+</div>
