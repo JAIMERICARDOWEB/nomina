@@ -2,27 +2,53 @@
     <div class="col-sm-12">
         <app-card cardTitle="Cargos">
             <div class="row">
-                <div class="col-md-12">
-                    <dx-data-grid class="grid" 
+                <div class="col-md-6">
+                    <form class="was-validated" [formGroup]="frmCargos">
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Código</label>
+                            <input type="text" id="id" autofocus class="form-control" formControlName="id" style="height: 35px; width: 170px;" maxlength="5" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Descripción</label>
+                            <input type="text" class="form-control" formControlName="descripcion" style="height: 35px;" maxlength="500" required />
+                        </div>
+                        
+                        <div style="margin-top: 20px">
+                            <div *ngIf="frmCargos?.invalid">
+                                <p style="font-size: 12px; color: red;">Corrija los campos en rojo!</p>
+                            </div>
+                            <button type="submit" class="btn btn-light" (click)="limpiar()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="frmCargos?.invalid" (click)="insert()"><i class="feather icon-check-circle"></i>Guardar</button>
+                            <button type="submit" class="btn btn-danger" [disabled]="frmCargos?.invalid" (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <dx-data-grid 
+                    class="grid"
                      [dataSource]="cargosList"
-                     height="300" 
+                     [showBorders]="true"
                      [allowColumnResizing]="true" 
                      [columnAutoWidth]="true"
                      [showColumnLines]="true" 
                      [showBorders]="true" 
                      [selection]="{ mode: 'single' }"
-                     
+                    keyExpr="id"
+                    (onSelectionChanged)="onSelectionChanged($event)"                
                      >
-                    <dxo-filter-row [visible]="true"/>
-                    <dxo-search-panel [visible]="true"/>
-                    <dxo-export [enabled]="true"/>
-                    <dxo-paging [enabled]="true"/>
-                    <dxo-scrolling mode="standard"/>
-
+                     <dxo-filter-row [visible]="true"></dxo-filter-row>
+                     <dxo-search-panel [visible]="true"></dxo-search-panel>
+                     <dxo-export [enabled]="true"></dxo-export>
+                     <dxo-paging [enabled]="true"></dxo-paging>
+                     <dxo-scrolling mode="standard"></dxo-scrolling>
+                    
                         <dxi-column dataField="id" caption="Código" width="120" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="descripcion" caption="Descripción" width="columnAutoWidth"></dxi-column>
 
                     </dx-data-grid>
+
+                  
                 </div>
 
             </div>
