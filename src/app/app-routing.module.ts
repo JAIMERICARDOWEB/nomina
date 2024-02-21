@@ -33,11 +33,11 @@ const routes: Routes = [
       {
         path: 'nomina',
         loadChildren: () =>
-          import('./componentes/nomina/cargos/cargos.module').then(
-            (m) => m.CargosModule
+          import('./componentes/nomina/nomina.module').then(
+            (m) => m.NominaModule
           ),
       },
-      {
+    /*  {
         path: 'basic',
         loadChildren: () =>
           import('./demo/ui-elements/ui-basic/ui-basic.module').then(
@@ -69,10 +69,10 @@ const routes: Routes = [
         path: 'sample-page',
         loadComponent: () =>
           import('./demo/extra/sample-page/sample-page.component'),
-      },
+      },*/
     ],
   },
-  {
+ /* {
     path: '',
     component: GuestComponent,
     children: [
@@ -96,7 +96,7 @@ const routes: Routes = [
   {
     path: 'prueba2',
     component: ShedulerComponent,
-  },
+  },*/
 ];
 
 @NgModule({

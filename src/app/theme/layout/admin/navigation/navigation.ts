@@ -81,13 +81,20 @@ const NavigationItems = [
             classes: 'nav-item',
             icon: 'feather icon-server',
           },
-          
+          {
+            id: 'areas',
+            title: 'Areas',
+            type: 'item',
+            url: '/nomina/areas/listdetail',
+            classes: 'nav-item',
+            icon: 'feather icon-server',
+          },
         ],
       },
       
     ],
   },
-  {
+  /*{
     id: 'ui-element',
     title: 'UI ELEMENT',
     type: 'group',
@@ -237,7 +244,7 @@ const NavigationItems = [
         external: true,
       },
     ],
-  },
+  },*/
 ];
 
 @Injectable()
