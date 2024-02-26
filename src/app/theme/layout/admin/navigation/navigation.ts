@@ -89,6 +89,14 @@ const NavigationItems = [
             classes: 'nav-item',
             icon: 'feather icon-server',
           },
+          {
+            id: 'prestadores',
+            title: 'Prestadores',
+            type: 'item',
+            url: '/nomina/prestadores/listdetail',
+            classes: 'nav-item',
+            icon: 'feather icon-server',
+          }
         ],
       },
       

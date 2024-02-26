@@ -1,0 +1,85 @@
+<div class="row" style="margin-top: 5px; margin-left: 2px; margin-right: 2px;">
+    <div class="col-sm-12">
+        <app-card cardTitle="Prestadores">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="was-validated" [formGroup]="frmPrestadores">
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Nit</label>
+                            <dx-select-box 
+                                id="id_ase"
+                                [dataSource]="nitsList" 
+                                (onValueChanged)="nitSeleccionado($event)" 
+                                class="campos_form"  
+                                valueExpr="id_ase" 
+                                formControlName="id_ase" 
+                                displayExpr="id_ase" 
+                                [searchEnabled]="true" 
+                                [searchExpr]="'nom_ase'"
+                                itemTemplate="item" required>
+                                <div *dxTemplate="let data of 'item'">
+                                    {{data.id_ase}} -  {{data.nom_ase}}
+                                </div>
+                            </dx-select-box>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Entidad</label>
+                            <input type="text" readonly class="form-control" formControlName="entidad" style="height: 35px;" maxlength="500" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 10px">
+                            <label>Cuenta Gasto</label>
+                            <dx-select-box 
+                            [dataSource]="cuentasList" 
+                            class="campos_form"  
+                            valueExpr="codcta" 
+                            formControlName="cuenta" 
+                            displayExpr="descripcion" 
+                            [searchEnabled]="true" 
+                            [searchExpr]="'descripcion'" required>
+                        </dx-select-box>
+                        </div>
+                        
+                        <div style="margin-top: 20px">
+                            <div *ngIf="frmPrestadores?.invalid">
+                                <p style="font-size: 12px; color: red;">Corrija los campos en rojo!</p>
+                            </div>
+                            <button type="submit" class="btn btn-light" (click)="limpiar()"><i class="feather icon-thumbs-up"></i>Nuevo</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="frmPrestadores?.invalid" (click)="insert()"><i class="feather icon-check-circle"></i>Guardar</button>
+                            <button type="submit" class="btn btn-danger" [disabled]="frmPrestadores?.invalid" (click)="confirmarDelete()"><i class="feather icon-slash"></i>Eliminar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <dx-data-grid 
+                    class="grid"
+                     [dataSource]="prestadoresList"
+                     [showBorders]="true"
+                     [allowColumnResizing]="true" 
+                     [columnAutoWidth]="true"
+                     [showColumnLines]="true" 
+                     [showBorders]="true" 
+                     [selection]="{ mode: 'single' }"
+                    keyExpr="id_ase"
+                    (onSelectionChanged)="onSelectionChanged($event)"                
+                     >
+                     <dxo-filter-row [visible]="true"></dxo-filter-row>
+                     <dxo-search-panel [visible]="true"></dxo-search-panel>
+                     <dxo-export [enabled]="true"></dxo-export>
+                     <dxo-paging [enabled]="true"></dxo-paging>
+                     <dxo-scrolling mode="standard"></dxo-scrolling>
+                    
+                        <dxi-column dataField="id_ase" caption="Nit" width="120" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="entidad" caption="Entidad" width="columnAutoWidth"></dxi-column>
+                        <dxi-column dataField="cuenta" caption="Cuenta Gasto" width="columnAutoWidth"></dxi-column>
+
+                    </dx-data-grid>
+
+                  
+                </div>
+
+            </div>
+
+        </app-card>
+    </div>
+</div>
