@@ -96,6 +96,14 @@ const NavigationItems = [
             url: '/nomina/prestadores/listdetail',
             classes: 'nav-item',
             icon: 'feather icon-server',
+          },
+          {
+            id: 'tipocontratos',
+            title: 'Tipos de contratos',
+            type: 'item',
+            url: '/nomina/tipocontrato/listdetail',
+            classes: 'nav-item',
+            icon: 'feather icon-server',
           }
         ],
       },
